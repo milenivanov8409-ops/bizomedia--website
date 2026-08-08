@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#060a0f">
+  <title>Dashboard · Bizomedia</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="dashboard-body">
+<div class="dashboard-shell">
+  <aside class="dashboard-sidebar">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/bizomedia-logo.svg" alt="Bizomedia logo"><span class="brand-name">bizomedia</span></a>
+    <nav class="sidebar-nav">
+      <button class="sidebar-link active" data-view="overview"><span class="nav-ico">⌂</span>Дашборд</button>
+      <button class="sidebar-link" data-view="calendar"><span class="nav-ico">▣</span>Календар</button>
+      <button class="sidebar-link" data-view="posts"><span class="nav-ico">✎</span>Публикации</button>
+      <button class="sidebar-link" data-view="approvals"><span class="nav-ico">✓</span>Одобрения<span class="sidebar-count">3</span></button>
+      <button class="sidebar-link" data-view="channels"><span class="nav-ico">⌁</span>Канали</button>
+      <button class="sidebar-link" data-view="ads"><span class="nav-ico">◈</span>Реклами</button>
+      <button class="sidebar-link" data-view="analytics"><span class="nav-ico">▥</span>Анализи</button>
+      <button class="sidebar-link" data-view="messages"><span class="nav-ico">○</span>Съобщения<span class="sidebar-count">2</span></button>
+      <button class="sidebar-link" data-view="settings"><span class="nav-ico">⚙</span>Настройки</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="account-mini"><div class="account-avatar" data-user-initials>ИП</div><div><strong data-user-name>Иван Петров</strong><span data-user-business>Urban Café</span></div></div>
+      <button class="logout-button" data-logout>↪ Изход</button>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+    <header class="dashboard-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="icon-button mobile-sidebar-toggle" aria-label="Отвори меню">☰</button>
+        <h1 data-page-title>Дашборд</h1>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-button" title="Известия">♢</button>
+        <div class="top-user"><div class="account-avatar" data-user-initials>ИП</div><div><strong data-user-name>Иван Петров</strong><span>Клиент</span></div></div>
+      </div>
+    </header>
+
+    <div class="dashboard-content">
+      <section class="dashboard-panel active" data-panel="overview">
+        <div class="panel-heading"><div><h2>Здравей, <span data-user-first>Иван</span> 👋</h2><p>Ето как се развива твоето съдържание този месец.</p></div><div class="demo-status" data-auth-status>Demo данни</div></div>
+        <div class="metrics-grid">
+          <article class="metric-card"><div class="metric-top"><span>Публикации този месец</span><span class="metric-icon">✎</span></div><div class="metric-value">24 <small>/ 30</small></div><div class="metric-change">80% изпълнение</div><div class="metric-progress"><span style="width:80%"></span></div></article>
+          <article class="metric-card"><div class="metric-top"><span>Reach</span><span class="metric-icon">◉</span></div><div class="metric-value">124.5K</div><div class="metric-change">↑ 18.2%</div></article>
+          <article class="metric-card"><div class="metric-top"><span>Engagement</span><span class="metric-icon">♡</span></div><div class="metric-value">12.4K</div><div class="metric-change">↑ 16.7%</div></article>
+          <article class="metric-card"><div class="metric-top"><span>Конверсии</span><span class="metric-icon">↗</span></div><div class="metric-value">4.6%</div><div class="metric-change">↑ 12.1%</div></article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="dashboard-card">
+            <div class="card-header"><h3>Календар · следващи 7 дни</h3><button class="card-link" data-open-view="calendar">Виж календара →</button></div>
+            <div class="week-strip">
+              <div class="day-column"><div class="day-name"><strong>18</strong>Пон</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1709281847802-9aef10b6d4bf?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot ig">◎</span></div></div>
+              <div class="day-column"><div class="day-name"><strong>19</strong>Вто</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1779896411954-9129882c996d?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot fb">f</span></div></div>
+              <div class="day-column"><div class="day-name"><strong>20</strong>Сря</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1770048532712-4fde5ef7eb90?auto=format&fit=crop&fm=jpg&q=80&w=1600" alt=""><span class="social-dot li">in</span></div></div>
+              <div class="day-column"><div class="day-name"><strong>21</strong>Чет</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1779896411954-9129882c996d?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot x">X</span></div></div>
+              <div class="day-column"><div class="day-name"><strong>22</strong>Пет</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1709281847802-9aef10b6d4bf?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot ig">◎</span></div></div>
+              <div class="day-column"><div class="day-name"><strong>23</strong>Съб</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1770048532712-4fde5ef7eb90?auto=format&fit=crop&fm=jpg&q=80&w=1600" alt=""><span class="social-dot fb">f</span></div></div>
+              <div class="day-column"><div class="day-name"><strong>24</strong>Нед</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1779896411954-9129882c996d?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot ga">G</span></div></div>
+            </div>
+          </article>
+          <article class="dashboard-card">
+            <div class="card-header"><h3>Топ публикации</h3><button class="card-link" data-open-view="posts">Всички →</button></div>
+            <div class="post-list">
+              <div class="post-row"><img src="https://images.unsplash.com/photo-1779896411954-9129882c996d?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><div><strong>Лятна промоция ✨</strong><span>Instagram · 15 май</span><span class="status-pill approved">Публикувана</span></div><div class="post-stats">♡ 256 · ◉ 12.4K</div></div>
+              <div class="post-row"><img src="https://images.unsplash.com/photo-1709281847802-9aef10b6d4bf?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><div><strong>Зад кулисите</strong><span>LinkedIn · 10 май</span><span class="status-pill approved">Публикувана</span></div><div class="post-stats">♡ 193 · ◉ 9.1K</div></div>
+              <div class="post-row"><img src="https://images.unsplash.com/photo-1770048532712-4fde5ef7eb90?auto=format&fit=crop&fm=jpg&q=80&w=1600" alt=""><div><strong>Отзив от клиент</strong><span>Facebook · 5 май</span><span class="status-pill approved">Публикувана</span></div><div class="post-stats">♡ 142 · ◉ 7.3K</div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="dashboard-grid" style="margin-top:16px">
+          <article class="dashboard-card">
+            <div class="card-header"><h3>Ефективност · последни 30 дни</h3><span class="card-link">Reach · Engagement · Clicks</span></div>
+            <div class="chart-wrap">
+              <svg viewBox="0 0 700 220" preserveAspectRatio="none" aria-label="Графика на ефективността">
+                <g class="chart-grid"><line x1="0" y1="40" x2="700" y2="40"/><line x1="0" y1="90" x2="700" y2="90"/><line x1="0" y1="140" x2="700" y2="140"/><line x1="0" y1="190" x2="700" y2="190"/></g>
+                <path class="chart-line reach" d="M0 170 C55 155,80 145,120 148 S190 125,235 132 S300 98,350 105 S430 80,475 88 S560 56,610 64 S660 35,700 42"/>
+                <path class="chart-line engagement" d="M0 190 C60 180,90 170,135 172 S210 150,255 158 S330 130,380 137 S470 110,520 116 S610 92,700 78"/>
+                <path class="chart-line clicks" d="M0 205 C70 198,105 190,150 192 S240 178,285 181 S370 160,420 166 S510 145,565 150 S640 132,700 126"/>
+              </svg>
+            </div>
+            <div class="chart-legend"><span style="--legend:#21d4c4">Reach</span><span style="--legend:#7557ff">Engagement</span><span style="--legend:#ff4fa2">Clicks</span></div>
+          </article>
+          <article class="dashboard-card">
+            <div class="card-header"><h3>Следващи задачи</h3><span class="card-link">3 активни</span></div>
+            <div class="post-list">
+              <div class="post-row"><div class="metric-icon">✓</div><div><strong>Одобри 3 публикации</strong><span>Краен срок: 22 май</span></div><span class="status-pill pending">Важно</span></div>
+              <div class="post-row"><div class="metric-icon">◈</div><div><strong>Потвърди Google Ads бюджет</strong><span>Кампания: Лято 2026</span></div><span class="status-pill draft">Преглед</span></div>
+              <div class="post-row"><div class="metric-icon">○</div><div><strong>Отговори на съобщение</strong><span>Мария от Bizomedia</span></div><span class="status-pill pending">Ново</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="dashboard-panel" data-panel="calendar">
+        <div class="panel-heading"><div><h2>Календар</h2><p>Планирано съдържание за всички канали.</p></div><button class="gradient-button">+ Нова заявка</button></div>
+        <article class="dashboard-card">
+          <div class="week-strip" style="grid-template-columns:repeat(7,minmax(115px,1fr))">
+            <div class="day-column"><div class="day-name"><strong>18</strong>Понеделник</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1709281847802-9aef10b6d4bf?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot ig">◎</span></div><p class="status-pill approved">Одобрено</p></div>
+            <div class="day-column"><div class="day-name"><strong>19</strong>Вторник</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1779896411954-9129882c996d?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot fb">f</span></div><p class="status-pill pending">За одобрение</p></div>
+            <div class="day-column"><div class="day-name"><strong>20</strong>Сряда</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1770048532712-4fde5ef7eb90?auto=format&fit=crop&fm=jpg&q=80&w=1600" alt=""><span class="social-dot li">in</span></div><p class="status-pill draft">Чернова</p></div>
+            <div class="day-column"><div class="day-name"><strong>21</strong>Четвъртък</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1779896411954-9129882c996d?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot x">X</span></div><p class="status-pill pending">За одобрение</p></div>
+            <div class="day-column"><div class="day-name"><strong>22</strong>Петък</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1709281847802-9aef10b6d4bf?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot ig">◎</span></div><p class="status-pill approved">Одобрено</p></div>
+            <div class="day-column"><div class="day-name"><strong>23</strong>Събота</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1770048532712-4fde5ef7eb90?auto=format&fit=crop&fm=jpg&q=80&w=1600" alt=""><span class="social-dot fb">f</span></div><p class="status-pill draft">Чернова</p></div>
+            <div class="day-column"><div class="day-name"><strong>24</strong>Неделя</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1779896411954-9129882c996d?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot ga">G</span></div><p class="status-pill approved">Активна реклама</p></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="dashboard-panel" data-panel="posts">
+        <div class="panel-heading"><div><h2>Публикации</h2><p>Всички планирани и публикувани материали.</p></div><button class="gradient-button">+ Заяви публикация</button></div>
+        <article class="dashboard-card table-card">
+          <table class="data-table"><thead><tr><th>Публикация</th><th>Канал</th><th>Дата</th><th>Статус</th><th>Резултат</th></tr></thead><tbody>
+            <tr><td>Лятна промоция ✨</td><td><span class="table-channel"><i class="mini-platform">◎</i>Instagram</span></td><td>15 май</td><td><span class="status-pill approved">Публикувана</span></td><td>12.4K reach</td></tr>
+            <tr><td>Как работим зад кулисите</td><td><span class="table-channel"><i class="mini-platform">in</i>LinkedIn</span></td><td>20 май</td><td><span class="status-pill pending">За одобрение</span></td><td>—</td></tr>
+            <tr><td>5 съвета за малък бизнес</td><td><span class="table-channel"><i class="mini-platform">X</i>X</span></td><td>21 май</td><td><span class="status-pill draft">Чернова</span></td><td>—</td></tr>
+            <tr><td>Клиентска история</td><td><span class="table-channel"><i class="mini-platform">f</i>Facebook</span></td><td>22 май</td><td><span class="status-pill pending">За одобрение</span></td><td>—</td></tr>
+          </tbody></table>
+        </article>
+      </section>
+
+      <section class="dashboard-panel" data-panel="approvals">
+        <div class="panel-heading"><div><h2>Одобрения</h2><p>Прегледай съдържанието преди публикуване.</p></div><div class="demo-status">3 чакат решение</div></div>
+        <article class="dashboard-card table-card">
+          <table class="data-table"><thead><tr><th>Материал</th><th>Канал</th><th>Публикуване</th><th>Статус</th><th>Действие</th></tr></thead><tbody>
+            <tr data-approval-row><td>Как работим зад кулисите</td><td>LinkedIn</td><td>20 май · 10:00</td><td><span class="status-pill pending">За одобрение</span></td><td><div class="action-group"><button class="table-action approve">Одобри</button><button class="table-action reject">Корекция</button></div></td></tr>
+            <tr data-approval-row><td>Клиентска история</td><td>Facebook</td><td>22 май · 14:00</td><td><span class="status-pill pending">За одобрение</span></td><td><div class="action-group"><button class="table-action approve">Одобри</button><button class="table-action reject">Корекция</button></div></td></tr>
+            <tr data-approval-row><td>5 съвета за малък бизнес</td><td>X</td><td>21 май · 18:00</td><td><span class="status-pill pending">За одобрение</span></td><td><div class="action-group"><button class="table-action approve">Одобри</button><button class="table-action reject">Корекция</button></div></td></tr>
+          </tbody></table>
+        </article>
+      </section>
+
+      <section class="dashboard-panel" data-panel="channels">
+        <div class="panel-heading"><div><h2>Канали</h2><p>Управлявай социалните профили и рекламните акаунти.</p></div><div class="demo-status">Demo връзки</div></div>
+        <div class="channel-grid">
+          <article class="channel-card" data-channel="Instagram"><div class="channel-card-head"><div class="platform-logo instagram">◎</div><div><strong>Instagram</strong><span>@urbancafe</span></div><i class="connection-state connected"></i></div><div class="channel-meta"><div><span>Публикации</span><strong>12</strong></div><div><span>Reach</span><strong>48.2K</strong></div></div><button class="connect-button connected">Свързан</button></article>
+          <article class="channel-card" data-channel="Facebook"><div class="channel-card-head"><div class="platform-logo facebook">f</div><div><strong>Facebook</strong><span>Urban Café Varna</span></div><i class="connection-state connected"></i></div><div class="channel-meta"><div><span>Публикации</span><strong>8</strong></div><div><span>Reach</span><strong>35.7K</strong></div></div><button class="connect-button connected">Свързан</button></article>
+          <article class="channel-card" data-channel="LinkedIn"><div class="channel-card-head"><div class="platform-logo linkedin">in</div><div><strong>LinkedIn</strong><span>Urban Café</span></div><i class="connection-state connected"></i></div><div class="channel-meta"><div><span>Публикации</span><strong>4</strong></div><div><span>Reach</span><strong>18.1K</strong></div></div><button class="connect-button connected">Свързан</button></article>
+          <article class="channel-card" data-channel="X"><div class="channel-card-head"><div class="platform-logo x">X</div><div><strong>X</strong><span>@urbancafe_bg</span></div><i class="connection-state"></i></div><div class="channel-meta"><div><span>Публикации</span><strong>0</strong></div><div><span>Reach</span><strong>—</strong></div></div><button class="connect-button">Свържи</button></article>
+          <article class="channel-card" data-channel="Google Ads"><div class="channel-card-head"><div class="platform-logo google">G</div><div><strong>Google Ads</strong><span>Customer ID •••• 2831</span></div><i class="connection-state connected"></i></div><div class="channel-meta"><div><span>Кампании</span><strong>2</strong></div><div><span>Конверсии</span><strong>86</strong></div></div><button class="connect-button connected">Свързан</button></article>
+        </div>
+      </section>
+
+      <section class="dashboard-panel" data-panel="ads">
+        <div class="panel-heading"><div><h2>Реклами</h2><p>Meta и Google Ads резултати.</p></div><button class="gradient-button">+ Нова кампания</button></div>
+        <div class="ads-grid">
+          <article class="ad-platform-card"><div class="ad-platform-head"><div><div class="platform-logo facebook">M</div><div><h3>Meta Ads</h3><span>Facebook & Instagram</span></div></div><span class="status-pill approved">Активно</span></div><div class="ad-metrics"><div><span>Разход</span><strong>842 лв</strong></div><div><span>Кликове</span><strong>1,284</strong></div><div><span>Leads</span><strong>54</strong></div></div><div class="campaign-list"><div class="campaign-item"><div><strong>Лятна промоция</strong><span>15–31 май</span></div><b>3.7 ROAS</b></div><div class="campaign-item"><div><strong>Brand awareness</strong><span>Постоянна</span></div><b>42K reach</b></div></div></article>
+          <article class="ad-platform-card"><div class="ad-platform-head"><div><div class="platform-logo google">G</div><div><h3>Google Ads</h3><span>Search & Performance Max</span></div></div><span class="status-pill approved">Активно</span></div><div class="ad-metrics"><div><span>Разход</span><strong>690 лв</strong></div><div><span>Кликове</span><strong>986</strong></div><div><span>Конверсии</span><strong>32</strong></div></div><div class="campaign-list"><div class="campaign-item"><div><strong>Search · Варна</strong><span>Ключови думи</span></div><b>4.1 ROAS</b></div><div class="campaign-item"><div><strong>Performance Max</strong><span>Всички канали</span></div><b>28 leads</b></div></div></article>
+        </div>
+      </section>
+
+      <section class="dashboard-panel" data-panel="analytics">
+        <div class="panel-heading"><div><h2>Анализи</h2><p>Общо представяне на съдържанието и рекламите.</p></div><select style="background:#0b131b;color:#fff;border:1px solid var(--dash-line);border-radius:9px;padding:10px"><option>Последните 30 дни</option><option>Последните 90 дни</option></select></div>
+        <div class="metrics-grid">
+          <article class="metric-card"><div class="metric-top">Общ Reach</div><div class="metric-value">124.5K</div><div class="metric-change">↑ 18.2%</div></article>
+          <article class="metric-card"><div class="metric-top">Engagement</div><div class="metric-value">12.4K</div><div class="metric-change">↑ 16.7%</div></article>
+          <article class="metric-card"><div class="metric-top">Кликове</div><div class="metric-value">2.27K</div><div class="metric-change">↑ 22.4%</div></article>
+          <article class="metric-card"><div class="metric-top">Leads</div><div class="metric-value">86</div><div class="metric-change">↑ 15.3%</div></article>
+        </div>
+        <article class="dashboard-card"><div class="card-header"><h3>Растеж по канали</h3><span class="card-link">Instagram · Facebook · LinkedIn · X · Ads</span></div><div class="chart-wrap" style="height:350px"><svg viewBox="0 0 900 350" preserveAspectRatio="none"><g class="chart-grid"><line x1="0" y1="60" x2="900" y2="60"/><line x1="0" y1="130" x2="900" y2="130"/><line x1="0" y1="200" x2="900" y2="200"/><line x1="0" y1="270" x2="900" y2="270"/><line x1="0" y1="330" x2="900" y2="330"/></g><path class="chart-line reach" d="M0 285 C90 270,130 240,190 250 S300 200,360 215 S480 150,540 165 S650 105,720 120 S830 55,900 65"/><path class="chart-line engagement" d="M0 315 C100 300,140 280,210 286 S320 250,390 258 S510 215,575 224 S690 175,755 183 S840 130,900 142"/><path class="chart-line clicks" d="M0 335 C100 326,150 315,220 318 S350 295,420 300 S540 274,610 280 S735 250,800 255 S860 230,900 235"/></svg></div></article>
+      </section>
+
+      <section class="dashboard-panel" data-panel="messages">
+        <div class="panel-heading"><div><h2>Съобщения</h2><p>Комуникация с екипа на Bizomedia.</p></div></div>
+        <div class="message-layout">
+          <article class="dashboard-card message-list"><div class="message-contact active"><div class="message-avatar">МК</div><div><strong>Мария К.</strong><span>Благодаря за обратната връзка 👋</span></div></div><div class="message-contact"><div class="message-avatar">СП</div><div><strong>Стефан П.</strong><span>Новият дизайн е готов.</span></div></div></article>
+          <article class="dashboard-card chat-card"><div class="card-header"><h3>Мария К. · Account Manager</h3><span class="status-pill approved">Онлайн</span></div><div class="chat-thread"><div class="bubble in">Здравей! Подготвили сме трите публикации за следващата седмица.</div><div class="bubble out">Супер, ще ги прегледам днес.</div><div class="bubble in">Благодаря! Можеш да ги одобриш от секция „Одобрения“ 👋</div></div><div class="chat-compose"><input placeholder="Напиши съобщение..."><button>➤</button></div></article>
+        </div>
+      </section>
+
+      <section class="dashboard-panel" data-panel="settings">
+        <div class="panel-heading"><div><h2>Настройки</h2><p>Профил, бизнес и предпочитания.</p></div></div>
+        <div class="settings-grid">
+          <article class="dashboard-card settings-card"><div class="card-header"><h3>Профил</h3></div><label><span>ИМЕ</span><input data-settings-name value="Иван Петров"></label><label><span>ИМЕЙЛ</span><input data-settings-email value="demo@bizomedia.bg" disabled></label><button class="gradient-button" data-save-settings>Запази</button></article>
+          <article class="dashboard-card settings-card"><div class="card-header"><h3>Бизнес</h3></div><label><span>ИМЕ НА БИЗНЕСА</span><input data-settings-business value="Urban Café"></label><label><span>ОСНОВЕН КАНАЛ</span><select><option>Instagram</option><option>Facebook</option><option>LinkedIn</option><option>X</option><option>Google Ads</option></select></label><button class="outline-button" data-save-settings>Запази промените</button></article>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script><script src="auth.js"></script><script src="dashboard.js"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@
   <meta name="description" content="Bizomedia планира, създава и публикува съдържание за малкия бизнес." />
   <meta name="theme-color" content="#05090d" />
   <title>Bizomedia — 30 дни съдържание</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,9 +15,7 @@
   <header class="site-header" id="top">
     <div class="nav-shell">
       <a class="brand" href="#home" aria-label="Bizomedia начало">
-        <span class="brand-mark" aria-hidden="true">
-          <span class="brand-mark-dot"></span>
-        </span>
+        <img class="brand-logo" src="assets/bizomedia-logo.svg" alt="" />
         <span class="brand-name">bizomedia</span>
       </a>
 
@@ -39,6 +37,7 @@
           <button class="lang-btn active" data-lang="bg">BG</button>
           <button class="lang-btn" data-lang="en">EN</button>
         </div>
+        <a class="nav-login" href="login.html" data-i18n="buttons.login">Вход</a>
         <a class="gradient-button nav-cta" href="#contact" data-i18n="buttons.contact">Свържи се с нас</a>
       </div>
     </div>
@@ -55,6 +54,7 @@
           <button class="lang-btn active" data-lang="bg">BG</button>
           <button class="lang-btn" data-lang="en">EN</button>
         </div>
+        <a class="outline-button" href="login.html" data-i18n="buttons.login">Вход</a>
         <a class="gradient-button" href="#contact" data-i18n="buttons.contact">Свържи се с нас</a>
       </div>
     </div>
@@ -71,7 +71,7 @@
             <span class="gradient-text" data-i18n="hero.line3">за теб.</span>
           </h1>
           <p class="hero-text" data-i18n="hero.description">
-            Bizomedia планира, създава и пуска съдържанието на твоя бизнес в социалните мрежи — заедно с реклами и визуален дизайн, докато ти се фокусираш върху клиентите си.
+            Bizomedia планира, създава и управлява съдържанието на твоя бизнес във Facebook, Instagram, LinkedIn и X — заедно с Meta и Google Ads, докато ти се фокусираш върху клиентите си.
           </p>
 
           <div class="hero-buttons">
@@ -89,7 +89,7 @@
             </div>
             <div class="stat-item">
               <span class="stat-icon">✦</span>
-              <div><strong>3</strong><small data-i18n="stats.services">услуги в едно</small></div>
+              <div><strong>5</strong><small data-i18n="stats.services">канала в една платформа</small></div>
             </div>
             <div class="stat-item">
               <span class="stat-icon">♡</span>
@@ -148,17 +148,11 @@
           <div class="signature" data-i18n="story.signature">Екипът на Bizomedia</div>
         </div>
 
-        <div class="studio-card reveal delay-1">
-          <div class="studio-glow"></div>
-          <div class="studio-logo">
-            <span class="brand-mark large-mark"></span>
-            <span>bizomedia</span>
-          </div>
-          <div class="studio-furniture">
-            <div class="desk"></div>
-            <div class="chair chair-one"></div>
-            <div class="chair chair-two"></div>
-            <div class="studio-plant"><i></i><i></i><i></i></div>
+        <div class="studio-photo-card reveal delay-1">
+          <img src="https://images.unsplash.com/photo-1770048532712-4fde5ef7eb90?auto=format&fit=crop&fm=jpg&q=80&w=1600" alt="Модерно маркетинг студио Bizomedia" />
+          <div class="photo-overlay">
+            <img src="assets/bizomedia-logo.svg" alt="" />
+            <span>bizomedia studio</span>
           </div>
         </div>
       </div>
@@ -174,14 +168,14 @@
           <div class="service-icon teal">✉</div>
           <p class="service-label teal-text">SOCIAL</p>
           <h3 data-i18n="services.social.title">Социални мрежи</h3>
-          <p data-i18n="services.social.text">Стратегия, съдържателен календар и ежедневно управление на Facebook и Instagram — текстове, визии и график на публикуване.</p>
+          <p data-i18n="services.social.text">Стратегия, съдържателен календар и управление на Facebook, Instagram, LinkedIn и X — текстове, визии, график и одобрение.</p>
           <a href="#contact" data-i18n="services.learn">Научи повече <span>→</span></a>
         </article>
         <article class="service-card reveal delay-1">
           <div class="service-icon purple">⌁</div>
           <p class="service-label purple-text">ADS</p>
           <h3 data-i18n="services.ads.title">Реклами</h3>
-          <p data-i18n="services.ads.text">Насочени рекламни кампании, които водят реални запитвания и продажби — с ясно проследяване на резултатите.</p>
+          <p data-i18n="services.ads.text">Meta и Google Ads кампании, които водят реални запитвания и продажби — с прозрачен бюджет, проследяване и месечен анализ.</p>
           <a href="#contact" data-i18n="services.learn">Научи повече <span>→</span></a>
         </article>
         <article class="service-card reveal delay-2">
@@ -219,6 +213,32 @@
           <div class="step-top"><span class="step-icon">▥</span><b>04</b></div>
           <h3 data-i18n="process.step4.title">Резултати</h3>
           <p data-i18n="process.step4.text">Следим числата всеки месец и коригираме стратегията според тях.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="platform section-shell divider-top" id="platform" data-section="platform">
+      <div class="platform-grid">
+        <div class="platform-copy reveal">
+          <p class="eyebrow" data-i18n="platform.eyebrow">КЛИЕНТСКА ПЛАТФОРМА</p>
+          <h2 data-i18n="platform.title">Всичко за твоето съдържание и реклами на едно място</h2>
+          <p data-i18n="platform.text">Влизаш в личния си dashboard, виждаш календара, одобряваш публикации и следиш резултатите от всички канали.</p>
+          <div class="channel-list">
+            <span><b class="channel-icon instagram">◎</b> Instagram</span>
+            <span><b class="channel-icon facebook">f</b> Facebook</span>
+            <span><b class="channel-icon linkedin">in</b> LinkedIn</span>
+            <span><b class="channel-icon x">X</b> X</span>
+            <span><b class="channel-icon google">G</b> Google Ads</span>
+          </div>
+          <div class="platform-actions">
+            <a class="gradient-button large" href="register.html" data-i18n="buttons.createAccount">Създай профил</a>
+            <a class="outline-button large" href="login.html" data-i18n="buttons.login">Вход</a>
+          </div>
+        </div>
+        <div class="dashboard-preview reveal delay-1">
+          <img src="assets/dashboard-preview.svg" alt="Bizomedia клиентски dashboard" />
+          <div class="preview-badge"><span></span><span data-i18n="platform.badge">Календар · Одобрения · Анализи</span></div>
         </div>
       </div>
     </section>
@@ -334,7 +354,7 @@
 
   <footer class="site-footer section-shell">
     <a class="brand" href="#home">
-      <span class="brand-mark"><span class="brand-mark-dot"></span></span>
+      <img class="brand-logo" src="assets/bizomedia-logo.svg" alt="" />
       <span class="brand-name">bizomedia</span>
     </a>
     <p>© 2026 Bizomedia · <span data-i18n="footer.location">Варна, България</span></p>
