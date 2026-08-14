@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#05090d">
+  <title>Регистрация · Bizomedia</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main class="auth-page">
+  <section class="auth-brand-panel">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/bizomedia-logo.svg" alt="Bizomedia logo" />
+        <span class="brand-name">bizomedia</span>
+      </a>
+      <div class="auth-brand-copy">
+        <p class="eyebrow">BIZOMEDIA CLIENT PORTAL</p>
+        <h1>Съдържание и реклами.<br><span class="gradient-text">Под твой контрол.</span></h1>
+        <p>Календар, одобрения и резултати за Facebook, Instagram, LinkedIn, X и Google Ads — в една защитена клиентска платформа.</p>
+        <div class="auth-channel-row">
+          <span>◎ Instagram</span><span>f Facebook</span><span>in LinkedIn</span><span>𝕏 X</span><span>G Google Ads</span>
+        </div>
+      </div>
+      <div class="auth-brand-footer">© 2026 Bizomedia · Варна, България</div>
+    </section>
+  <section class="auth-form-panel">
+    <div class="auth-box">
+      <a class="back-site" href="index.html">← Обратно към сайта</a>
+      <h2>Създай профил</h2>
+      <p class="auth-subtitle">Започни с личен клиентски dashboard.</p>
+      <div class="auth-mode-banner"></div>
+      <form class="auth-form" data-auth-form="register">
+        <div class="field-row">
+          <label><span>ИМЕ И ФАМИЛИЯ</span><div class="auth-input-wrap"><input type="text" name="fullName" autocomplete="name" required placeholder="Иван Петров"></div></label>
+          <label><span>БИЗНЕС</span><div class="auth-input-wrap"><input type="text" name="business" required placeholder="Urban Café"></div></label>
+        </div>
+        <label><span>ИМЕЙЛ</span><div class="auth-input-wrap"><input type="email" name="email" autocomplete="email" required placeholder="name@company.com"></div></label>
+        <div class="field-row">
+          <label><span>ПАРОЛА</span><div class="auth-input-wrap"><input type="password" name="password" autocomplete="new-password" minlength="8" required placeholder="Поне 8 символа"><button type="button" class="password-toggle" aria-label="Покажи паролата">◉</button></div></label>
+          <label><span>ПОВТОРИ ПАРОЛАТА</span><div class="auth-input-wrap"><input type="password" name="confirmPassword" autocomplete="new-password" minlength="8" required placeholder="Повтори паролата"><button type="button" class="password-toggle" aria-label="Покажи паролата">◉</button></div></label>
+        </div>
+        <label class="checkbox-label"><input type="checkbox" required> Съгласявам се с условията и политиката за поверителност.</label>
+        <button class="gradient-button auth-submit full" type="submit">Създай профил</button>
+      </form>
+      <div class="auth-message"></div>
+      <p class="auth-bottom">Вече имаш профил? <a href="login.html">Вход</a></p>
+    </div>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script><script src="auth.js"></script>
+</body></html>

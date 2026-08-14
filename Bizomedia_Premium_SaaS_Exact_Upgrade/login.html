@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#05090d">
+  <title>Вход · Bizomedia</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main class="auth-page">
+  <section class="auth-brand-panel">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/bizomedia-logo.svg" alt="Bizomedia logo" />
+        <span class="brand-name">bizomedia</span>
+      </a>
+      <div class="auth-brand-copy">
+        <p class="eyebrow">BIZOMEDIA CLIENT PORTAL</p>
+        <h1>Съдържание и реклами.<br><span class="gradient-text">Под твой контрол.</span></h1>
+        <p>Календар, одобрения и резултати за Facebook, Instagram, LinkedIn, X и Google Ads — в една защитена клиентска платформа.</p>
+        <div class="auth-channel-row">
+          <span>◎ Instagram</span><span>f Facebook</span><span>in LinkedIn</span><span>𝕏 X</span><span>G Google Ads</span>
+        </div>
+      </div>
+      <div class="auth-brand-footer">© 2026 Bizomedia · Варна, България</div>
+    </section>
+  <section class="auth-form-panel">
+    <div class="auth-box">
+      <a class="back-site" href="index.html">← Обратно към сайта</a>
+      <h2>Добре дошъл</h2>
+      <p class="auth-subtitle">Влез в своя Bizomedia dashboard.</p>
+      <div class="auth-mode-banner"></div>
+      <form class="auth-form" data-auth-form="login">
+        <label><span>ИМЕЙЛ</span><div class="auth-input-wrap"><input type="email" name="email" autocomplete="email" required placeholder="name@company.com"></div></label>
+        <label><span>ПАРОЛА</span><div class="auth-input-wrap"><input type="password" name="password" autocomplete="current-password" required placeholder="••••••••"><button type="button" class="password-toggle" aria-label="Покажи паролата">◉</button></div></label>
+        <div class="auth-helper-row"><label class="checkbox-label"><input type="checkbox" name="remember" checked> Запомни ме</label><a class="auth-link" href="forgot-password.html">Забравена парола?</a></div>
+        <button class="gradient-button auth-submit full" type="submit">Вход</button>
+      </form>
+      <div class="auth-message"></div>
+      <div class="auth-separator">или разгледай платформата</div>
+      <button class="demo-login" type="button">Отвори демо dashboard</button>
+      <p class="auth-bottom">Нямаш профил? <a href="register.html">Регистрация</a></p>
+    </div>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script><script src="auth.js"></script>
+</body></html>
