@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#060a0f">
-  <title>Dashboard · Bizomedia</title>
+  <title>My Bizomedia Studio</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="dashboard.css"><link rel="stylesheet" href="dashboard-embed.css">
 </head>
 <body class="dashboard-body">
 <div class="dashboard-shell">
   <aside class="dashboard-sidebar">
     <a class="brand" href="index.html"><img class="brand-logo" src="assets/bizomedia-logo.svg" alt="Bizomedia logo"><span class="brand-name">bizomedia</span></a>
     <nav class="sidebar-nav">
-      <button class="sidebar-link active" data-view="overview"><span class="nav-ico">⌂</span>Дашборд</button>
+      <button class="sidebar-link active" data-view="overview"><span class="nav-ico">⌂</span>My Studio</button>
       <button class="sidebar-link" data-view="calendar"><span class="nav-ico">▣</span>Календар</button>
       <button class="sidebar-link" data-view="posts"><span class="nav-ico">✎</span>Публикации</button>
       <button class="sidebar-link" data-view="approvals"><span class="nav-ico">✓</span>Одобрения<span class="sidebar-count">3</span></button>
@@ -26,7 +26,7 @@
       <button class="sidebar-link" data-view="settings"><span class="nav-ico">⚙</span>Настройки</button>
     </nav>
     <div class="sidebar-bottom">
-      <div class="account-mini"><div class="account-avatar" data-user-initials>ИП</div><div><strong data-user-name>Иван Петров</strong><span data-user-business>Urban Café</span></div></div>
+      <div class="account-mini"><div class="account-avatar brand-account-avatar"><img src="assets/bizomedia-logo.svg" alt=""></div><div><strong>Bizomedia Studio</strong><span>Работно пространство</span></div></div>
       <button class="logout-button" data-logout>↪ Изход</button>
     </div>
   </aside>
@@ -35,17 +35,17 @@
     <header class="dashboard-topbar">
       <div style="display:flex;align-items:center;gap:12px">
         <button class="icon-button mobile-sidebar-toggle" aria-label="Отвори меню">☰</button>
-        <h1 data-page-title>Дашборд</h1>
+        <h1 data-page-title>My Bizomedia Studio</h1>
       </div>
       <div class="topbar-actions">
         <button class="icon-button" title="Известия">♢</button>
-        <div class="top-user"><div class="account-avatar" data-user-initials>ИП</div><div><strong data-user-name>Иван Петров</strong><span>Клиент</span></div></div>
+        <div class="top-user"><div class="account-avatar brand-account-avatar"><img src="assets/bizomedia-logo.svg" alt=""></div><div><strong>Bizomedia Studio</strong><span>Работно пространство</span></div></div>
       </div>
     </header>
 
     <div class="dashboard-content">
       <section class="dashboard-panel active" data-panel="overview">
-        <div class="panel-heading"><div><h2>Здравей, <span data-user-first>Иван</span> 👋</h2><p>Ето как се развива твоето съдържание този месец.</p></div><div class="demo-status" data-auth-status>Demo данни</div></div>
+        <div class="panel-heading"><div><h2>My Bizomedia Studio</h2><p>Всичко за съдържанието и резултатите на едно място.</p></div><div class="demo-status" data-auth-status>Studio overview</div></div>
         <div class="metrics-grid">
           <article class="metric-card"><div class="metric-top"><span>Публикации този месец</span><span class="metric-icon">✎</span></div><div class="metric-value">24 <small>/ 30</small></div><div class="metric-change">80% изпълнение</div><div class="metric-progress"><span style="width:80%"></span></div></article>
           <article class="metric-card"><div class="metric-top"><span>Reach</span><span class="metric-icon">◉</span></div><div class="metric-value">124.5K</div><div class="metric-change">↑ 18.2%</div></article>
@@ -187,6 +187,6 @@
   </main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script><script src="auth.js"></script><script src="dashboard.js"></script>
+<script src="supabase-config.js"></script><script src="auth.js"></script><script src="dashboard.js"></script><script src="dashboard-brand.js"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Marck+Script&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="hero-premium.css" />
 </head>
@@ -31,7 +31,6 @@
         <a class="nav-link active" href="#home" data-i18n="nav.home">Начало</a>
         <a class="nav-link" href="#story" data-i18n="nav.story">История</a>
         <a class="nav-link" href="#services" data-i18n="nav.services">Услуги</a>
-        <a class="nav-link" href="#process" data-i18n="nav.process">Как работим</a>
         <a class="nav-link" href="#pricing" data-i18n="nav.pricing">Цени</a>
         <a class="nav-link" href="#contact" data-i18n="nav.contact">Контакт</a>
       </nav>
@@ -39,8 +38,12 @@
       <div class="nav-actions">
         <a class="gradient-button account-cta" href="login.html">
           <span class="account-icon" aria-hidden="true"></span>
-          <span>Вход / Регистрация</span>
+          <span data-lang-key="account">Вход / Регистрация</span>
         </a>
+        <div class="language-switch premium-language" role="group" aria-label="Избор на език">
+          <button class="lang-btn active" data-lang="bg">BG</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
       </div>
     </div>
 
@@ -48,14 +51,17 @@
       <a href="#home" data-i18n="nav.home">Начало</a>
       <a href="#story" data-i18n="nav.story">История</a>
       <a href="#services" data-i18n="nav.services">Услуги</a>
-      <a href="#process" data-i18n="nav.process">Как работим</a>
       <a href="#pricing" data-i18n="nav.pricing">Цени</a>
       <a href="#contact" data-i18n="nav.contact">Контакт</a>
       <div class="mobile-nav-bottom">
         <a class="gradient-button account-cta" href="login.html">
           <span class="account-icon" aria-hidden="true"></span>
-          <span>Вход / Регистрация</span>
+          <span data-lang-key="account">Вход / Регистрация</span>
         </a>
+        <div class="language-switch premium-language" role="group" aria-label="Избор на език">
+          <button class="lang-btn active" data-lang="bg">BG</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
       </div>
     </div>
   </header>
@@ -64,59 +70,92 @@
     <section class="hero section-shell" id="home" data-section="home">
       <div class="hero-grid">
         <div class="hero-copy reveal">
-          <p class="hero-pill"><span>✧</span> ТВОЯТ МАРКЕТИНГ НА АВТОПИЛОТ</p>
+          <p class="hero-pill"><span>✧</span><b data-lang-key="pill">СЪДЪРЖАНИЕ · РЕКЛАМИ · ДИЗАЙН</b></p>
           <h1>
-            <span>Твоят бранд</span><br />
-            <span>Нашата стратегия</span><br />
-            <span class="gradient-text">Реални резултати</span>
+            <span data-lang-key="hero1">Твоят бранд</span><br />
+            <span data-lang-key="hero2">Нашата стратегия</span><br />
+            <span class="gradient-text" data-lang-key="hero3">Реални резултати</span>
           </h1>
-          <p class="hero-text">
+          <p class="hero-text" data-lang-key="description">
             Всичко необходимо за онлайн присъствието на бизнеса ти — планирано и управлявано вместо теб.
           </p>
 
+          <div class="hero-platforms" aria-label="Поддържани маркетинг канали">
+            <span><i class="platform-ico ig">◎</i>Instagram</span>
+            <span><i class="platform-ico fb">f</i>Facebook</span>
+            <span><i class="platform-ico li">in</i>LinkedIn</span>
+            <span><i class="platform-ico tw">X</i>X</span>
+            <span><i class="platform-ico tt">♪</i>TikTok</span>
+            <span><i class="platform-ico ga">G</i>Google Ads</span>
+            <span><i class="platform-ico ma">∞</i>Meta Ads</span>
+            <span><i class="platform-ico em">✉</i>Email Marketing</span>
+          </div>
+
           <div class="hero-buttons">
-            <a class="gradient-button large" href="#contact"><span class="rocket-icon">♧</span>Започни сега</a>
+            <a class="gradient-button large" href="#contact"><span class="calendar-cta-icon" aria-hidden="true"></span><span data-lang-key="start">Получи безплатен календар</span></a>
             <a class="outline-button large" href="#process">
               <span class="play-icon" aria-hidden="true"></span>
-              <span>Виж как работим</span>
+              <span data-lang-key="seeProcess">Как работи Bizomedia</span>
             </a>
           </div>
 
-          <div class="hero-trust" aria-label="Доверие и резултати">
-            <div class="trust-avatars"><span>М</span><span>А</span><span>Д</span></div>
-            <div><strong>Доверени от 50+ бизнеса</strong><div class="trust-stars">★★★★★</div></div>
-          </div>
         </div>
 
         <div class="hero-visual reveal delay-1">
           <div class="visual-glow glow-cyan"></div><div class="visual-glow glow-purple"></div>
-          <div class="dashboard-laptop">
-            <div class="laptop-lid">
-              <div class="dash-sidebar">
-                <div class="dash-brand"><img src="assets/bizomedia-logo.svg" alt=""><i></i></div>
-                <span class="side-active">⌂</span><span>▦</span><span>◫</span><span>✓</span><span>◉</span><span>⌁</span>
-                <span class="side-bottom">⚙</span>
+          <div class="studio-device-scene" aria-label="Bizomedia Content Studio на лаптоп и телефон">
+            <img class="hero-uploaded-device-image" src="assets/bizomedia-device-dashboard-v2.png" alt="Bizomedia Studio на лаптоп и телефон">
+            <img class="studio-approved-hardware" src="assets/apple-device-mockup.png" alt="Реалистични MacBook и iPhone устройства">
+            <div class="studio-laptop-device">
+              <div class="studio-laptop-lid">
+                <i class="studio-camera" aria-hidden="true"></i>
+                <div class="content-studio-screen">
+                  <aside class="content-studio-nav">
+                    <div class="content-studio-brand"><img src="assets/bizomedia-logo.svg" alt=""><b>bizomedia</b></div>
+                    <span class="active">✦ <b>My Studio</b></span>
+                    <span>▣ <b data-lang-key="studioCalendar">Календар</b></span>
+                    <span>✎ <b data-lang-key="studioContent">Съдържание</b></span>
+                    <span>✓ <b data-lang-key="studioApprovals">Одобрения</b></span>
+                  </aside>
+                  <section class="content-studio-main">
+                    <header class="content-studio-topbar">
+                      <h3>My Bizomedia Studio</h3>
+                      <div><img src="assets/bizomedia-logo.svg" alt=""><span><b>Bizomedia Studio</b><small>Content workspace</small></span></div>
+                    </header>
+                    <div class="content-studio-heading"><span><small data-lang-key="studioThisWeek">ТАЗИ СЕДМИЦА</small><b data-lang-key="studioReadyTitle">Съдържанието ти е готово</b></span><em data-lang-key="studioPostCount">12 от 12 публикации</em></div>
+                    <div class="content-studio-workspace">
+                      <article class="studio-post-preview">
+                        <header><span><i></i><b data-lang-key="studioPostType">Instagram публикация</b></span><small data-lang-key="studioToday">Днес · 18:30</small></header>
+                        <img src="https://images.unsplash.com/photo-1709281847802-9aef10b6d4bf?auto=format&amp;fit=crop&amp;fm=jpg&amp;q=90&amp;w=1200" alt="Премиум продуктова композиция без хора">
+                        <footer><span>♡  ◯  ⌁</span><b data-lang-key="studioPostCaption">Нова седмица, ново съдържание ✨</b></footer>
+                      </article>
+                      <aside class="studio-approval-card">
+                        <span class="studio-ready" data-lang-key="studioReady">✓ ГОТОВО</span>
+                        <h4 data-lang-key="studioReviewTitle">Последен преглед</h4>
+                        <p data-lang-key="studioReviewText">Визията, текстът и графикът са подготвени.</p>
+                        <ul><li>Instagram</li><li data-lang-key="studioToday">Днес · 18:30</li><li data-lang-key="studioAutoPublish">Автоматично публикуване</li></ul>
+                        <button type="button" data-lang-key="studioApprove">Одобри публикацията</button>
+                      </aside>
+                    </div>
+                    <div class="content-studio-week">
+                      <b data-lang-key="studioNext">Следващи</b><span class="done"><i>18</i><span data-lang-key="studioMon">Пон</span></span><span><i>19</i><span data-lang-key="studioTue">Вто</span></span><span><i>20</i><span data-lang-key="studioWed">Сря</span></span><span><i>21</i><span data-lang-key="studioThu">Чет</span></span><em data-lang-key="studioOnSchedule">Всичко е по план</em>
+                    </div>
+                  </section>
+                </div>
               </div>
-              <div class="dash-main">
-                <div class="dash-top"><div><small>ДОБРО УТРО</small><strong>Твоят маркетинг, на едно място.</strong></div><span class="dash-avatar">МИ</span></div>
-                <div class="metric-grid">
-                  <div><small>ПУБЛИКАЦИИ</small><strong>36</strong><em>+12%</em></div>
-                  <div><small>ОБХВАТ</small><strong>24.8K</strong><em>+18%</em></div>
-                  <div><small>АНГАЖИРАНОСТ</small><strong>3.6K</strong><em>+15%</em></div>
-                </div>
-                <div class="dash-content">
-                  <div class="chart-card"><div class="card-title"><b>Резултати</b><small>Последни 30 дни</small></div><div class="chart-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="chart-line"><span></span></div></div>
-                  <div class="post-card"><b>Предстоящи</b><div><span class="post-thumb"></span><p><strong>Нова публикация</strong><small>Днес · 18:30</small></p><em>Готова</em></div><div><span class="post-thumb violet"></span><p><strong>Brand story</strong><small>Утре · 10:00</small></p><em>План</em></div></div>
-                </div>
+              <div class="studio-laptop-base"><span></span></div>
+            </div>
+            <div class="studio-phone-device">
+              <i class="studio-phone-button"></i><i class="studio-phone-island"></i>
+              <div class="studio-phone-screen">
+                <header><img src="assets/bizomedia-logo.svg" alt=""><span><b>bizomedia</b><small data-lang-key="phoneLocation">Варна, България</small></span><em>•••</em></header>
+                <div class="studio-phone-day" data-lang-key="phoneDay">Ден 12/30</div>
+                <img class="studio-phone-photo" src="https://images.unsplash.com/photo-1709281847802-9aef10b6d4bf?auto=format&amp;fit=crop&amp;fm=jpg&amp;q=90&amp;w=900" alt="Премиум продуктова композиция без хора">
+                <div class="studio-phone-actions"><b>♥</b><span>◯</span><span>⌁</span><em>▱</em></div>
+                <div class="studio-phone-copy"><b data-lang-key="phoneLikes">Харесано от 247 души</b><p><strong>bizomedia</strong> <span class="phone-caption-text" data-lang-key="phoneCaption">Съдържание, което работи за твоя бизнес ✨</span></p><span class="phone-tags" data-lang-key="phoneTags">#маркетинг #социалнимрежи</span></div>
+                <nav><span>⌂</span><span>⌕</span><b>＋</b><span>♡</span><span>◉</span></nav>
               </div>
             </div>
-            <div class="laptop-base"><span></span></div>
-          </div>
-          <div class="calendar-phone">
-            <div class="phone-island"></div>
-            <div class="phone-calendar-head"><small>МАРТ 2026</small><strong>Календар</strong><span>＋</span></div>
-            <div class="calendar-days"><b>П</b><b>В</b><b>С</b><b>Ч</b><b>П</b><b>С</b><b>Н</b><i></i><i></i><i></i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i class="today">10</i><i>11</i><i>12</i><i>13</i><i>14</i></div>
-            <div class="phone-schedule"><small>ДНЕС</small><div><span></span><p><b>Instagram post</b><em>18:30 · Готов за публикуване</em></p></div><div><span class="purple"></span><p><b>Google Ads</b><em>20:00 · Кампания</em></p></div></div>
           </div>
           <div class="floating-chip chip-live"><i></i><span><small>Кампаниите са активни</small><b>+18.4% този месец</b></span></div>
           <div class="floating-chip chip-approval"><span>✓</span><div><small>Съдържанието е готово</small><b>Одобри публикацията</b></div></div>
@@ -128,21 +167,21 @@
       <div class="story-grid">
         <div class="section-copy reveal">
           <p class="eyebrow" data-i18n="story.eyebrow">ИСТОРИЯ</p>
-          <h2 data-i18n="story.title">Основана от нуждата<br />на малкия бизнес</h2>
-          <p data-i18n="story.p1">
-            Bizomedia започна във Варна с една проста идея — собствениците на малък бизнес нямат нито времето, нито екипа да управляват социалните си мрежи професионално.
+          <h2><span data-lang-key="storyTitle1">Вдъхновена от нуждите</span><br /><span data-lang-key="storyTitle2">на малкия бизнес</span></h2>
+          <p data-lang-key="storyP1">
+            Bizomedia е маркетинг студио от Варна, България, създадено, за да помага на малкия бизнес да расте онлайн.
           </p>
-          <p data-i18n="story.p2">
-            Вместо да наемат цял отдел, те получават партньор, който планира, създава и пуска съдържанието вместо тях.
+          <p data-lang-key="storyP2">
+            Разбираме колко време и енергия са нужни за развитието на един бизнес. Затова поемаме стратегията, съдържанието, дизайна и рекламата, за да можеш да се фокусираш върху това, което правиш най-добре.
           </p>
-          <p data-i18n="story.p3">
-            Днес работим с бизнеси от различни сектори, като винаги започваме с безплатен 30-дневен календар — за да видиш как работим, преди да поемеш ангажимент.
+          <p data-lang-key="storyP3">
+            Всеки проект започва с безплатен 30-дневен календар — ясна посока за твоя бранд, преди да вземеш решение.
           </p>
           <div class="signature" data-i18n="story.signature">Екипът на Bizomedia</div>
         </div>
 
         <div class="studio-photo-card reveal delay-1">
-          <img src="https://images.unsplash.com/photo-1770048532712-4fde5ef7eb90?auto=format&fit=crop&fm=jpg&q=80&w=1600" alt="Модерно маркетинг студио Bizomedia" />
+          <img src="assets/bizomedia-story-studio.png" alt="Работно студио на Bizomedia с лаптоп и изглед към морето" />
           <div class="photo-overlay">
             <img src="assets/bizomedia-logo.svg" alt="" />
             <span>bizomedia studio</span>
@@ -284,30 +323,15 @@
       <p class="pricing-note" data-i18n="pricing.note">* Примерни цени — ще ги персонализираме според твоя бизнес.</p>
     </section>
 
-    <section class="testimonials section-shell divider-top">
-      <div class="section-heading reveal">
-        <p class="eyebrow" data-i18n="testimonials.eyebrow">ДОВОЛНИ КЛИЕНТИ</p>
-        <h2 data-i18n="testimonials.title">Реални резултати, реални хора</h2>
-      </div>
-      <div class="testimonial-grid">
-        <article class="testimonial-card reveal">
-          <div class="client-head"><div class="avatar">М</div><div><strong>Мария К.</strong><span data-i18n="testimonials.owner">Собственик, бутик</span></div></div>
-          <p data-i18n="testimonials.one">Откакто работим с Bizomedia, имаме постоянен поток от запитвания. Най-доброто решение за малък бизнес!</p>
-          <div class="stars">★★★★★</div>
-        </article>
-        <article class="testimonial-card reveal delay-1">
-          <div class="client-head"><div class="avatar">И</div><div><strong>Иван П.</strong><span data-i18n="testimonials.restaurant">Управител, ресторант</span></div></div>
-          <p data-i18n="testimonials.two">Професионален екип, който разбира бранда и работи като част от нашия бизнес.</p>
-          <div class="stars">★★★★★</div>
-        </article>
-        <article class="testimonial-card reveal delay-2">
-          <div class="client-head"><div class="avatar">С</div><div><strong>Стефан Д.</strong><span data-i18n="testimonials.manager">Управител</span></div></div>
-          <p data-i18n="testimonials.three">Рекламите започнаха да носят реални клиенти. Комуникацията е ясна и бърза.</p>
-          <div class="stars">★★★★★</div>
-        </article>
-      </div>
-      <div class="logo-strip reveal">
-        <span>FitZone</span><span>URBAN CAFE</span><span>NEXT LEVEL</span><span>BEAUTY STUDIO</span><span>VD VARDEAV</span>
+    <section class="testimonials section-shell divider-top" id="first-stories">
+      <div class="testimonial-empty reveal">
+        <div class="testimonial-empty-icon" aria-hidden="true"><img src="assets/bizomedia-logo.svg" alt=""></div>
+        <div class="testimonial-empty-copy">
+          <p class="eyebrow" data-lang-key="earlyEyebrow">ПЪРВИТЕ ИСТОРИИ ПРЕДСТОЯТ</p>
+          <h2 data-lang-key="earlyTitle">Изграждаме първите си партньорства</h2>
+          <p data-lang-key="earlyText">Bizomedia е ново маркетинг студио. Скоро тук ще споделяме реални резултати и мнения от бизнесите, с които работим.</p>
+        </div>
+        <a class="outline-button testimonial-empty-cta" href="#contact"><span data-lang-key="earlyCta">Стани сред първите ни партньори</span><b aria-hidden="true">→</b></a>
       </div>
     </section>
 
@@ -355,5 +379,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="language-extra.js"></script>
 </body>
 </html>
