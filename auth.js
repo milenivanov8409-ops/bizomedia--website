@@ -159,6 +159,7 @@
             password: String(data.get("password") || "")
           });
           if (error) throw error;
+          localStorage.removeItem("bizomedia-demo");
           saveUser(result.user);
           location.href = "dashboard.html";
           return;
@@ -232,25 +233,33 @@
 
   async function protectDashboard() {
     if (!document.body.matches("[data-auth-required]")) return;
-    if (localStorage.getItem("bizomedia-demo") === "1") {
-      document.body.classList.add("auth-ready");
-      return;
-    }
     if (!client) {
+      if (localStorage.getItem("bizomedia-demo") === "1") {
+        document.body.classList.add("auth-ready");
+        return;
+      }
       location.replace("login.html");
       return;
     }
     const { data, error } = await client.auth.getSession();
+    if (!error && data.session) {
+      localStorage.removeItem("bizomedia-demo");
+      saveUser(data.session.user);
+      const profile = await loadProfile(data.session.user);
+      document.dispatchEvent(new CustomEvent("bizomedia:profile-ready", {
+        detail: { user: data.session.user, profile }
+      }));
+      document.body.classList.add("auth-ready");
+      return;
+    }
+    if (localStorage.getItem("bizomedia-demo") === "1") {
+      document.body.classList.add("auth-ready");
+      return;
+    }
     if (error || !data.session) {
       location.replace("login.html");
       return;
     }
-    saveUser(data.session.user);
-    const profile = await loadProfile(data.session.user);
-    document.dispatchEvent(new CustomEvent("bizomedia:profile-ready", {
-      detail: { user: data.session.user, profile }
-    }));
-    document.body.classList.add("auth-ready");
   }
 
   protectDashboard();
