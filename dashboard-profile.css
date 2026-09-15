@@ -6,6 +6,10 @@
   transition: opacity 0.18s ease;
 }
 
+.sidebar-count[hidden] {
+  display: none;
+}
+
 .settings-message {
   min-height: 22px;
   margin: 14px 2px 0;
