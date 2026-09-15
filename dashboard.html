@@ -18,7 +18,7 @@
       <button class="sidebar-link active" data-view="overview"><span class="nav-ico">⌂</span>My Studio</button>
       <button class="sidebar-link" data-view="calendar"><span class="nav-ico">▣</span>Календар</button>
       <button class="sidebar-link" data-view="posts"><span class="nav-ico">✎</span>Публикации</button>
-      <button class="sidebar-link" data-view="approvals"><span class="nav-ico">✓</span>Одобрения<span class="sidebar-count">3</span></button>
+      <button class="sidebar-link" data-view="approvals"><span class="nav-ico">✓</span>Одобрения<span class="sidebar-count" data-approval-count>0</span></button>
       <button class="sidebar-link" data-view="channels"><span class="nav-ico">⌁</span>Канали</button>
       <button class="sidebar-link" data-view="ads"><span class="nav-ico">◈</span>Реклами</button>
       <button class="sidebar-link" data-view="analytics"><span class="nav-ico">▥</span>Анализи</button>
@@ -101,39 +101,28 @@
       </section>
 
       <section class="dashboard-panel" data-panel="calendar">
-        <div class="panel-heading"><div><h2>Календар</h2><p>Планирано съдържание за всички канали.</p></div><button class="gradient-button">+ Нова заявка</button></div>
+        <div class="panel-heading"><div><h2>Календар</h2><p>Планирано съдържание за всички канали.</p></div><button class="gradient-button" data-open-post-form>+ Нова заявка</button></div>
         <article class="dashboard-card">
-          <div class="week-strip" style="grid-template-columns:repeat(7,minmax(115px,1fr))">
-            <div class="day-column"><div class="day-name"><strong>18</strong>Понеделник</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1709281847802-9aef10b6d4bf?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot ig">◎</span></div><p class="status-pill approved">Одобрено</p></div>
-            <div class="day-column"><div class="day-name"><strong>19</strong>Вторник</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1779896411954-9129882c996d?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot fb">f</span></div><p class="status-pill pending">За одобрение</p></div>
-            <div class="day-column"><div class="day-name"><strong>20</strong>Сряда</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1770048532712-4fde5ef7eb90?auto=format&fit=crop&fm=jpg&q=80&w=1600" alt=""><span class="social-dot li">in</span></div><p class="status-pill draft">Чернова</p></div>
-            <div class="day-column"><div class="day-name"><strong>21</strong>Четвъртък</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1779896411954-9129882c996d?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot x">X</span></div><p class="status-pill pending">За одобрение</p></div>
-            <div class="day-column"><div class="day-name"><strong>22</strong>Петък</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1709281847802-9aef10b6d4bf?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot ig">◎</span></div><p class="status-pill approved">Одобрено</p></div>
-            <div class="day-column"><div class="day-name"><strong>23</strong>Събота</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1770048532712-4fde5ef7eb90?auto=format&fit=crop&fm=jpg&q=80&w=1600" alt=""><span class="social-dot fb">f</span></div><p class="status-pill draft">Чернова</p></div>
-            <div class="day-column"><div class="day-name"><strong>24</strong>Неделя</div><div class="calendar-thumb"><img src="https://images.unsplash.com/photo-1779896411954-9129882c996d?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt=""><span class="social-dot ga">G</span></div><p class="status-pill approved">Активна реклама</p></div>
+          <div class="week-strip content-calendar" data-calendar-list>
+            <div class="content-empty">Зареждаме твоя календар…</div>
           </div>
         </article>
       </section>
 
       <section class="dashboard-panel" data-panel="posts">
-        <div class="panel-heading"><div><h2>Публикации</h2><p>Всички планирани и публикувани материали.</p></div><button class="gradient-button">+ Заяви публикация</button></div>
+        <div class="panel-heading"><div><h2>Публикации</h2><p>Всички планирани и публикувани материали.</p></div><button class="gradient-button" data-open-post-form>+ Заяви публикация</button></div>
         <article class="dashboard-card table-card">
           <table class="data-table"><thead><tr><th>Публикация</th><th>Канал</th><th>Дата</th><th>Статус</th><th>Резултат</th></tr></thead><tbody>
-            <tr><td>Лятна промоция ✨</td><td><span class="table-channel"><i class="mini-platform">◎</i>Instagram</span></td><td>15 май</td><td><span class="status-pill approved">Публикувана</span></td><td>12.4K reach</td></tr>
-            <tr><td>Как работим зад кулисите</td><td><span class="table-channel"><i class="mini-platform">in</i>LinkedIn</span></td><td>20 май</td><td><span class="status-pill pending">За одобрение</span></td><td>—</td></tr>
-            <tr><td>5 съвета за малък бизнес</td><td><span class="table-channel"><i class="mini-platform">X</i>X</span></td><td>21 май</td><td><span class="status-pill draft">Чернова</span></td><td>—</td></tr>
-            <tr><td>Клиентска история</td><td><span class="table-channel"><i class="mini-platform">f</i>Facebook</span></td><td>22 май</td><td><span class="status-pill pending">За одобрение</span></td><td>—</td></tr>
+            <tr><td colspan="5"><div class="content-empty">Зареждаме публикациите…</div></td></tr>
           </tbody></table>
         </article>
       </section>
 
       <section class="dashboard-panel" data-panel="approvals">
-        <div class="panel-heading"><div><h2>Одобрения</h2><p>Прегледай съдържанието преди публикуване.</p></div><div class="demo-status">3 чакат решение</div></div>
+        <div class="panel-heading"><div><h2>Одобрения</h2><p>Прегледай съдържанието преди публикуване.</p></div><div class="demo-status" data-approval-summary>0 чакат решение</div></div>
         <article class="dashboard-card table-card">
           <table class="data-table"><thead><tr><th>Материал</th><th>Канал</th><th>Публикуване</th><th>Статус</th><th>Действие</th></tr></thead><tbody>
-            <tr data-approval-row><td>Как работим зад кулисите</td><td>LinkedIn</td><td>20 май · 10:00</td><td><span class="status-pill pending">За одобрение</span></td><td><div class="action-group"><button class="table-action approve">Одобри</button><button class="table-action reject">Корекция</button></div></td></tr>
-            <tr data-approval-row><td>Клиентска история</td><td>Facebook</td><td>22 май · 14:00</td><td><span class="status-pill pending">За одобрение</span></td><td><div class="action-group"><button class="table-action approve">Одобри</button><button class="table-action reject">Корекция</button></div></td></tr>
-            <tr data-approval-row><td>5 съвета за малък бизнес</td><td>X</td><td>21 май · 18:00</td><td><span class="status-pill pending">За одобрение</span></td><td><div class="action-group"><button class="table-action approve">Одобри</button><button class="table-action reject">Корекция</button></div></td></tr>
+            <tr><td colspan="5"><div class="content-empty">Зареждаме материалите за одобрение…</div></td></tr>
           </tbody></table>
         </article>
       </section>
@@ -187,7 +176,20 @@
     </div>
   </main>
 </div>
+<dialog class="post-dialog" data-post-dialog>
+  <form class="post-request-form" data-post-form>
+    <div class="post-dialog-head"><div><span class="dialog-eyebrow">НОВА ЗАЯВКА</span><h2>Заяви публикация</h2></div><button type="button" class="dialog-close" data-close-post-form aria-label="Затвори">×</button></div>
+    <label><span>ЗАГЛАВИЕ</span><input name="title" required maxlength="120" placeholder="Например: Лятна промоция"></label>
+    <div class="post-form-row">
+      <label><span>КАНАЛ</span><select name="channel" required><option>Instagram</option><option>Facebook</option><option>LinkedIn</option><option>X</option><option>Google Ads</option><option>Email</option></select></label>
+      <label><span>ДАТА И ЧАС</span><input name="scheduledAt" type="datetime-local" required></label>
+    </div>
+    <label><span>ИДЕЯ / НАСОКИ</span><textarea name="caption" rows="5" maxlength="1200" placeholder="Опиши какво искаш да кажем, офертата или основната идея."></textarea></label>
+    <p class="post-form-message" data-post-form-message aria-live="polite"></p>
+    <button class="gradient-button post-submit" type="submit">Изпрати заявката</button>
+  </form>
+</dialog>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script><script src="auth.js?v=20260916-2"></script><script src="dashboard.js?v=20260916-2"></script><script src="dashboard-brand.js"></script>
+<script src="supabase-config.js"></script><script src="auth.js?v=20260916-2"></script><script src="dashboard.js?v=20260916-3"></script><script src="dashboard-brand.js"></script>
 </body>
 </html>

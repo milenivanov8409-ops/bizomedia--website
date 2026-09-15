@@ -22,28 +22,6 @@
     button.addEventListener("click", () => openView(button.dataset.openView));
   });
 
-  document.querySelectorAll("[data-approval-row]").forEach((row) => {
-    row.querySelector(".approve")?.addEventListener("click", () => {
-      const status = row.querySelector(".status-pill");
-      if (status) {
-        status.className = "status-pill approved";
-        status.textContent = "Одобрено";
-      }
-      const actions = row.querySelector(".action-group");
-      if (actions) actions.innerHTML = '<span style="color:#59e29c;font-size:11px">✓ Готово</span>';
-    });
-
-    row.querySelector(".reject")?.addEventListener("click", () => {
-      const status = row.querySelector(".status-pill");
-      if (status) {
-        status.className = "status-pill draft";
-        status.textContent = "За корекция";
-      }
-      const actions = row.querySelector(".action-group");
-      if (actions) actions.innerHTML = '<span style="color:#b19cff;font-size:11px">Изпратено</span>';
-    });
-  });
-
   document.querySelectorAll(".connect-button:not(.connected)").forEach((button) => {
     button.addEventListener("click", () => {
       button.textContent = "Demo: API setup";
@@ -122,6 +100,205 @@
   }
 
   hydrateAuthenticatedProfile();
+
+  const contentStatus = {
+    draft: { label: "Чернова", className: "draft" },
+    pending: { label: "За одобрение", className: "pending" },
+    approved: { label: "Одобрена", className: "approved" },
+    scheduled: { label: "Планирана", className: "approved" },
+    published: { label: "Публикувана", className: "approved" },
+    changes_requested: { label: "За корекция", className: "draft" }
+  };
+
+  const channelMarks = {
+    Instagram: { label: "◎", className: "ig" },
+    Facebook: { label: "f", className: "fb" },
+    LinkedIn: { label: "in", className: "li" },
+    X: { label: "X", className: "x" },
+    "Google Ads": { label: "G", className: "ga" },
+    Email: { label: "@", className: "li" }
+  };
+
+  function escapeHtml(value = "") {
+    return String(value).replace(/[&<>'"]/g, (character) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "'": "&#39;",
+      '"': "&quot;"
+    })[character]);
+  }
+
+  function formatContentDate(value, includeTime = false) {
+    if (!value) return "Без дата";
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return "Без дата";
+    return new Intl.DateTimeFormat("bg-BG", {
+      day: "numeric",
+      month: "short",
+      ...(includeTime ? { hour: "2-digit", minute: "2-digit" } : {})
+    }).format(date);
+  }
+
+  function statusPill(status) {
+    const meta = contentStatus[status] || contentStatus.draft;
+    return `<span class="status-pill ${meta.className}">${meta.label}</span>`;
+  }
+
+  let contentPosts = [];
+
+  function renderContentWorkspace(posts) {
+    const postsBody = document.querySelector('[data-panel="posts"] tbody');
+    const approvalsBody = document.querySelector('[data-panel="approvals"] tbody');
+    const calendarList = document.querySelector("[data-calendar-list]");
+    const pendingPosts = posts.filter((post) => post.status === "pending");
+
+    document.querySelectorAll("[data-approval-count]").forEach((element) => {
+      element.textContent = String(pendingPosts.length);
+      element.hidden = pendingPosts.length === 0;
+    });
+    const approvalSummary = document.querySelector("[data-approval-summary]");
+    if (approvalSummary) approvalSummary.textContent = pendingPosts.length === 1
+      ? "1 чака решение"
+      : `${pendingPosts.length} чакат решение`;
+
+    if (postsBody) {
+      postsBody.innerHTML = posts.length
+        ? posts.map((post) => {
+          const mark = channelMarks[post.channel] || channelMarks.Instagram;
+          const result = post.reach ? `${Number(post.reach).toLocaleString("bg-BG")} reach` : "—";
+          return `<tr><td>${escapeHtml(post.title)}</td><td><span class="table-channel"><i class="mini-platform">${mark.label}</i>${escapeHtml(post.channel)}</span></td><td>${formatContentDate(post.scheduled_at)}</td><td>${statusPill(post.status)}</td><td>${result}</td></tr>`;
+        }).join("")
+        : '<tr><td colspan="5"><div class="content-empty">Все още няма публикации. Създай първата заявка.</div></td></tr>';
+    }
+
+    if (approvalsBody) {
+      approvalsBody.innerHTML = pendingPosts.length
+        ? pendingPosts.map((post) => `<tr><td>${escapeHtml(post.title)}</td><td>${escapeHtml(post.channel)}</td><td>${formatContentDate(post.scheduled_at, true)}</td><td>${statusPill(post.status)}</td><td><div class="action-group"><button class="table-action approve" data-content-action="approved" data-post-id="${post.id}">Одобри</button><button class="table-action reject" data-content-action="changes_requested" data-post-id="${post.id}">Корекция</button></div></td></tr>`).join("")
+        : '<tr><td colspan="5"><div class="content-empty">Няма публикации, които чакат решение.</div></td></tr>';
+    }
+
+    if (calendarList) {
+      const plannedPosts = posts.filter((post) => post.scheduled_at).slice(0, 14);
+      calendarList.innerHTML = plannedPosts.length
+        ? plannedPosts.map((post) => {
+          const date = new Date(post.scheduled_at);
+          const mark = channelMarks[post.channel] || channelMarks.Instagram;
+          const weekday = new Intl.DateTimeFormat("bg-BG", { weekday: "long" }).format(date);
+          return `<div class="day-column"><div class="day-name"><strong>${date.getDate()}</strong>${escapeHtml(weekday)}</div><div class="calendar-thumb"><span class="social-dot ${mark.className}">${mark.label}</span></div><p class="calendar-content-title">${escapeHtml(post.title)}</p>${statusPill(post.status)}</div>`;
+        }).join("")
+        : '<div class="content-empty">Календарът е свободен. Създай заявка и избери дата.</div>';
+    }
+  }
+
+  function showContentError(message) {
+    const safeMessage = escapeHtml(message);
+    const postsBody = document.querySelector('[data-panel="posts"] tbody');
+    const approvalsBody = document.querySelector('[data-panel="approvals"] tbody');
+    const calendarList = document.querySelector("[data-calendar-list]");
+    if (postsBody) postsBody.innerHTML = `<tr><td colspan="5"><div class="content-empty content-error">${safeMessage}</div></td></tr>`;
+    if (approvalsBody) approvalsBody.innerHTML = `<tr><td colspan="5"><div class="content-empty content-error">${safeMessage}</div></td></tr>`;
+    if (calendarList) calendarList.innerHTML = `<div class="content-empty content-error">${safeMessage}</div>`;
+  }
+
+  async function loadContentPosts() {
+    const auth = window.BizomediaAuth;
+    if (!auth?.client) {
+      showContentError("Съдържанието временно не е достъпно.");
+      return;
+    }
+    const { data: sessionData } = await auth.client.auth.getSession();
+    const user = sessionData?.session?.user;
+    if (!user) return;
+    const { data, error } = await auth.client
+      .from("posts")
+      .select("id,title,caption,channel,status,scheduled_at,media_url,reach,created_at")
+      .eq("user_id", user.id)
+      .order("scheduled_at", { ascending: true, nullsFirst: false });
+    if (error) {
+      showContentError("Активирай модула за публикации в Supabase.");
+      return;
+    }
+    contentPosts = data || [];
+    renderContentWorkspace(contentPosts);
+  }
+
+  const postDialog = document.querySelector("[data-post-dialog]");
+  const postForm = document.querySelector("[data-post-form]");
+  const postFormMessage = document.querySelector("[data-post-form-message]");
+
+  document.querySelectorAll("[data-open-post-form]").forEach((button) => {
+    button.addEventListener("click", () => postDialog?.showModal());
+  });
+  document.querySelector("[data-close-post-form]")?.addEventListener("click", () => postDialog?.close());
+  postDialog?.addEventListener("click", (event) => {
+    if (event.target === postDialog) postDialog.close();
+  });
+
+  postForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const submit = postForm.querySelector('button[type="submit"]');
+    const formData = new FormData(postForm);
+    const auth = window.BizomediaAuth;
+    if (!auth?.client) return;
+    submit.disabled = true;
+    submit.textContent = "Изпращане…";
+    if (postFormMessage) {
+      postFormMessage.textContent = "";
+      postFormMessage.className = "post-form-message";
+    }
+
+    try {
+      const { data: sessionData } = await auth.client.auth.getSession();
+      const user = sessionData?.session?.user;
+      if (!user) throw new Error("Сесията е изтекла. Влез отново.");
+      const scheduledAt = String(formData.get("scheduledAt") || "");
+      const { error } = await auth.client.from("posts").insert({
+        user_id: user.id,
+        title: String(formData.get("title") || "").trim(),
+        caption: String(formData.get("caption") || "").trim(),
+        channel: String(formData.get("channel") || "Instagram"),
+        scheduled_at: scheduledAt ? new Date(scheduledAt).toISOString() : null,
+        status: "pending"
+      });
+      if (error) throw error;
+      postForm.reset();
+      if (postFormMessage) {
+        postFormMessage.textContent = "Заявката е изпратена успешно.";
+        postFormMessage.classList.add("success");
+      }
+      await loadContentPosts();
+      setTimeout(() => postDialog?.close(), 750);
+    } catch (error) {
+      if (postFormMessage) postFormMessage.textContent = error?.message || "Заявката не може да бъде изпратена.";
+    } finally {
+      submit.disabled = false;
+      submit.textContent = "Изпрати заявката";
+    }
+  });
+
+  document.querySelector('[data-panel="approvals"] tbody')?.addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-content-action]");
+    if (!button) return;
+    const auth = window.BizomediaAuth;
+    if (!auth?.client) return;
+    button.disabled = true;
+    const { data: sessionData } = await auth.client.auth.getSession();
+    const user = sessionData?.session?.user;
+    if (!user) {
+      button.disabled = false;
+      return;
+    }
+    const { error } = await auth.client
+      .from("posts")
+      .update({ status: button.dataset.contentAction, updated_at: new Date().toISOString() })
+      .eq("id", button.dataset.postId)
+      .eq("user_id", user.id);
+    if (!error) await loadContentPosts();
+    else button.disabled = false;
+  });
+
+  loadContentPosts();
 
   const settingsMessage = document.querySelector("[data-settings-message]");
   document.querySelectorAll("[data-save-settings]").forEach((button) => {
