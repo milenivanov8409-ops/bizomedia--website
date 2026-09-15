@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Marck+Script&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="hero-premium.css" />
+  <link rel="stylesheet" href="hero-premium.css?v=header-wordmark-neon-20260830" />
 </head>
 <body>
   <div class="page-noise" aria-hidden="true"></div>
@@ -193,29 +193,71 @@
     <section class="services section-shell divider-top" id="services" data-section="services">
       <div class="section-heading reveal">
         <p class="eyebrow" data-i18n="services.eyebrow">УСЛУГИ</p>
-        <h2 data-i18n="services.title">Пълен пакет, изграден около твоя бранд</h2>
+        <h2 data-lang-key="servicesTitle">Съдържание, реклама и дизайн — в една ясна система</h2>
       </div>
       <div class="service-grid">
-        <article class="service-card reveal">
-          <div class="service-icon teal">✉</div>
+        <article class="service-card service-card-social reveal">
+          <div class="service-icon teal social-network-service-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" focusable="false">
+              <path d="M15 17 24 10l10 7M14 31l10 7 10-7M14 18v12M34 18v12" />
+              <circle cx="24" cy="10" r="4" />
+              <circle cx="14" cy="18" r="4" />
+              <circle cx="34" cy="18" r="4" />
+              <circle cx="14" cy="30" r="4" />
+              <circle cx="34" cy="30" r="4" />
+              <circle cx="24" cy="38" r="4" />
+              <circle class="social-network-core" cx="24" cy="24" r="5" />
+              <path d="M18 21l-1-1m13 1 1-1m-13 7-1 1m13-1 1 1" />
+            </svg>
+          </div>
           <p class="service-label teal-text">SOCIAL</p>
           <h3 data-i18n="services.social.title">Социални мрежи</h3>
-          <p data-i18n="services.social.text">Стратегия, съдържателен календар и управление на Facebook, Instagram, LinkedIn и X — текстове, визии, график и одобрение.</p>
-          <a href="#contact" data-i18n="services.learn">Научи повече <span>→</span></a>
+          <p data-lang-key="servicesSocialText">Стратегия, съдържание и управление на Instagram, Facebook, LinkedIn, X и TikTok — текстове, визии, график и одобрение.</p>
+          <div class="service-platform-list" aria-label="Поддържани социални мрежи">
+            <span><i class="service-mini-icon service-mini-ig">◎</i>Instagram</span>
+            <span><i class="service-mini-icon service-mini-fb">f</i>Facebook</span>
+            <span><i class="service-mini-icon service-mini-li">in</i>LinkedIn</span>
+            <span><i class="service-mini-icon service-mini-x">X</i>X</span>
+            <span><i class="service-mini-icon service-mini-tt">♪</i>TikTok</span>
+          </div>
+          <a href="#contact" data-i18n="services.learn">Научи повече</a>
         </article>
-        <article class="service-card reveal delay-1">
-          <div class="service-icon purple">⌁</div>
+        <article class="service-card service-card-ads reveal delay-1">
+          <div class="service-icon purple ads-service-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" focusable="false">
+              <path d="M10 21h8l16-8v22l-16-8h-8z" />
+              <path d="M18 28l3 9h7l-5-8" />
+              <path d="M38 17l4-4M39 24h6M38 31l4 4" />
+              <path class="ads-icon-spark" d="M26 17l3 2-3 2" />
+            </svg>
+          </div>
           <p class="service-label purple-text">ADS</p>
           <h3 data-i18n="services.ads.title">Реклами</h3>
-          <p data-i18n="services.ads.text">Meta и Google Ads кампании, които водят реални запитвания и продажби — с прозрачен бюджет, проследяване и месечен анализ.</p>
-          <a href="#contact" data-i18n="services.learn">Научи повече <span>→</span></a>
+          <p data-lang-key="servicesAdsText">Планиране, създаване и управление на Meta Ads и Google Ads кампании — ясни бюджети, проследяване и месечен анализ.</p>
+          <div class="service-platform-list service-ad-platforms" aria-label="Поддържани рекламни платформи">
+            <span><i class="service-mini-icon service-mini-meta">∞</i>Meta Ads</span>
+            <span><i class="service-mini-icon service-mini-google">G</i>Google Ads</span>
+          </div>
+          <a href="#contact" data-i18n="services.learn">Научи повече</a>
         </article>
-        <article class="service-card reveal delay-2">
-          <div class="service-icon gold">✎</div>
+        <article class="service-card service-card-design reveal delay-2">
+          <div class="service-icon gold design-service-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" focusable="false">
+              <path d="M10 20 24 12l14 8-14 8z" />
+              <path d="m10 27 14 8 14-8M14 33l10 6 10-6" />
+              <path class="design-icon-spark" d="M37 8v7M33.5 11.5h7M14 8v4M12 10h4" />
+            </svg>
+          </div>
           <p class="service-label gold-text">DESIGN</p>
           <h3 data-i18n="services.design.title">Дизайн</h3>
-          <p data-i18n="services.design.text">Визуална идентичност, шаблони за публикации и материали, които карат бранда ти да изглежда последователно навсякъде.</p>
-          <a href="#contact" data-i18n="services.learn">Научи повече <span>→</span></a>
+          <p data-lang-key="servicesDesignText">Визуална система за разпознаваем бранд — идентичност, шаблони за социални мрежи, рекламни визии и материали за кампании.</p>
+          <div class="service-platform-list service-design-features" aria-label="Дизайн услуги">
+            <span><i class="service-mini-icon service-mini-brand">◇</i><b data-lang-key="designChipBrand">Бранд идентичност</b></span>
+            <span><i class="service-mini-icon service-mini-template">▦</i><b data-lang-key="designChipTemplates">Шаблони</b></span>
+            <span><i class="service-mini-icon service-mini-creative">✦</i><b data-lang-key="designChipAds">Рекламни визии</b></span>
+            <span><i class="service-mini-icon service-mini-campaign">◫</i><b data-lang-key="designChipCampaigns">Кампании</b></span>
+          </div>
+          <a href="#contact" data-i18n="services.learn">Научи повече</a>
         </article>
       </div>
     </section>
@@ -223,28 +265,63 @@
     <section class="process section-shell divider-top" id="process" data-section="process">
       <div class="section-heading reveal">
         <p class="eyebrow" data-i18n="process.eyebrow">ПРОЦЕС</p>
-        <h2 data-i18n="process.title">Как работим заедно</h2>
+        <h2 data-lang-key="processTitle">От първата идея до реалните резултати</h2>
       </div>
-      <div class="process-grid">
+      <div class="process-grid process-flow">
         <div class="process-step reveal">
-          <div class="step-top"><span class="step-icon">◫</span><b>01</b></div>
-          <h3 data-i18n="process.step1.title">Запитване</h3>
-          <p data-i18n="process.step1.text">Пишеш ни за бизнеса си — какво правиш и какви са целите ти.</p>
+          <div class="step-top">
+            <span class="step-icon process-icon process-icon-discovery" aria-hidden="true">
+              <svg viewBox="0 0 48 48" focusable="false">
+                <path d="M10 13h28v19H24l-9 7v-7h-5z" />
+                <path d="M17 21h14M17 26h9" />
+                <path class="process-icon-spark" d="M37 7v6M34 10h6" />
+              </svg>
+            </span>
+          </div>
+          <h3 data-lang-key="processStepOneTitle">Опознаваме твоя бизнес</h3>
+          <p data-lang-key="processStepOneText">Разказваш ни за бизнеса, целите и клиентите си. Ние превръщаме тази информация в ясна посока за съдържанието ти.</p>
         </div>
         <div class="process-step reveal delay-1">
-          <div class="step-top"><span class="step-icon">▣</span><b>02</b></div>
-          <h3 data-i18n="process.step2.title">Календар</h3>
-          <p data-i18n="process.step2.text">Изготвяме безплатен 30-дневен план, за да видиш как работим.</p>
+          <div class="step-top">
+            <span class="step-icon process-icon process-icon-calendar" aria-hidden="true">
+              <svg viewBox="0 0 48 48" focusable="false">
+                <rect x="9" y="12" width="30" height="27" rx="4" />
+                <path d="M9 20h30M17 8v8M31 8v8" />
+                <path class="process-icon-accent" d="m18 29 4 4 8-9" />
+              </svg>
+            </span>
+          </div>
+          <h3 data-lang-key="processStepTwoTitle">Създаваме твоя календар</h3>
+          <p data-lang-key="processStepTwoText">Подготвяме 30-дневен план с теми, формати и дати, съобразен с целите и гласа на твоя бранд.</p>
         </div>
         <div class="process-step reveal delay-2">
-          <div class="step-top"><span class="step-icon">➤</span><b>03</b></div>
-          <h3 data-i18n="process.step3.title">Изпълнение</h3>
-          <p data-i18n="process.step3.text">Поемаме публикациите, рекламите и дизайна — ти одобряваш и следиш.</p>
+          <div class="step-top">
+            <span class="step-icon process-icon process-icon-delivery" aria-hidden="true">
+              <svg viewBox="0 0 48 48" focusable="false">
+                <path d="M20 30c-5 1-8 4-9 9 5-1 8-4 9-9Z" />
+                <path d="M19 29c2-9 8-16 19-19 0 11-6 18-15 21z" />
+                <circle cx="30" cy="18" r="3" />
+                <path d="m18 25-7-1 6-6M24 31l1 7 6-6" />
+                <path class="process-icon-spark" d="M38 31v6M35 34h6" />
+              </svg>
+            </span>
+          </div>
+          <h3 data-lang-key="processStepThreeTitle">Изпълнение</h3>
+          <p data-lang-key="processStepThreeText">Създаваме текстовете, визиите и кампаниите, подреждаме всичко в календара, а ти преглеждаш и одобряваш.</p>
         </div>
         <div class="process-step reveal delay-3">
-          <div class="step-top"><span class="step-icon">▥</span><b>04</b></div>
-          <h3 data-i18n="process.step4.title">Резултати</h3>
-          <p data-i18n="process.step4.text">Следим числата всеки месец и коригираме стратегията според тях.</p>
+          <div class="step-top">
+            <span class="step-icon process-icon process-icon-results" aria-hidden="true">
+              <svg viewBox="0 0 48 48" focusable="false">
+                <path d="M10 38V12M10 38h29" />
+                <path class="process-icon-accent" d="m15 31 7-8 6 4 10-12" />
+                <path d="m32 15h6v6" />
+                <path class="process-icon-spark" d="M18 11v5M15.5 13.5h5" />
+              </svg>
+            </span>
+          </div>
+          <h3 data-lang-key="processStepFourTitle">Резултати</h3>
+          <p data-lang-key="processStepFourText">Следим представянето, показваме ти ясни отчети и подобряваме стратегията всеки месец.</p>
         </div>
       </div>
     </section>
@@ -253,24 +330,26 @@
     <section class="platform section-shell divider-top" id="platform" data-section="platform">
       <div class="platform-grid">
         <div class="platform-copy reveal">
-          <p class="eyebrow" data-i18n="platform.eyebrow">КЛИЕНТСКА ПЛАТФОРМА</p>
-          <h2 data-i18n="platform.title">Всичко за твоето съдържание и реклами на едно място</h2>
-          <p data-i18n="platform.text">Влизаш в личния си dashboard, виждаш календара, одобряваш публикации и следиш резултатите от всички канали.</p>
-          <div class="channel-list">
-            <span><b class="channel-icon instagram">◎</b> Instagram</span>
-            <span><b class="channel-icon facebook">f</b> Facebook</span>
-            <span><b class="channel-icon linkedin">in</b> LinkedIn</span>
-            <span><b class="channel-icon x">X</b> X</span>
-            <span><b class="channel-icon google">G</b> Google Ads</span>
+          <p class="eyebrow" data-lang-key="platformEyebrow">MY BIZOMEDIA STUDIO</p>
+          <h2 data-lang-key="platformTitle">Твоят бранд вече има свое студио</h2>
+          <p data-lang-key="platformText">Влизаш в своето Bizomedia Studio, преглеждаш календара, одобряваш публикациите и следиш резултатите от всички канали.</p>
+          <div class="hero-platforms platform-channels" aria-label="Поддържани маркетинг канали">
+            <span><i class="platform-ico ig">◎</i>Instagram</span>
+            <span><i class="platform-ico fb">f</i>Facebook</span>
+            <span><i class="platform-ico li">in</i>LinkedIn</span>
+            <span><i class="platform-ico tw">X</i>X</span>
+            <span><i class="platform-ico tt">♪</i>TikTok</span>
+            <span><i class="platform-ico ga">G</i>Google Ads</span>
+            <span><i class="platform-ico ma">∞</i>Meta Ads</span>
+            <span><i class="platform-ico em">✉</i>Email Marketing</span>
           </div>
-          <div class="platform-actions">
+          <div class="platform-actions hero-buttons">
             <a class="gradient-button large" href="register.html" data-i18n="buttons.createAccount">Създай профил</a>
             <a class="outline-button large" href="login.html" data-i18n="buttons.login">Вход</a>
           </div>
         </div>
         <div class="dashboard-preview reveal delay-1">
-          <img src="assets/dashboard-preview.svg" alt="Bizomedia клиентски dashboard" />
-          <div class="preview-badge"><span></span><span data-i18n="platform.badge">Календар · Одобрения · Анализи</span></div>
+          <img class="dashboard-concept-image" src="assets/my-bizomedia-studio-dashboard-photoreal.png" alt="My Bizomedia Studio dashboard на реалистичен лаптоп и телефон" />
         </div>
       </div>
     </section>
@@ -278,49 +357,94 @@
     <section class="pricing section-shell divider-top" id="pricing" data-section="pricing">
       <div class="section-heading reveal">
         <p class="eyebrow" data-i18n="pricing.eyebrow">ЦЕНИ</p>
-        <h2 data-i18n="pricing.title">Прозрачни пакети за всеки етап</h2>
+        <h2 data-lang-key="pricingTitle">Избери правилния план за твоя бизнес</h2>
       </div>
       <div class="pricing-grid">
         <article class="price-card reveal">
-          <p class="plan">BASIC</p>
-          <div class="price"><strong>350</strong><span data-i18n="pricing.month">лв/мес</span></div>
-          <p class="plan-subtitle" data-i18n="pricing.basic.subtitle">За начало в социалните мрежи</p>
+          <p class="plan" data-lang-key="pricingEssential">ESSENTIAL</p>
+          <div class="price"><strong>€49</strong><span data-lang-key="pricingMonth">/месец</span></div>
+          <p class="plan-subtitle" data-lang-key="pricingEssentialSubtitle">За начало в социалните мрежи</p>
           <ul>
-            <li data-i18n="pricing.basic.one">Съдържателен календар (12 публикации/мес)</li>
-            <li data-i18n="pricing.basic.two">Facebook & Instagram публикуване</li>
-            <li data-i18n="pricing.basic.three">Основен месечен отчет</li>
+            <li data-lang-key="pricingEssentialOne">Съдържателен календар (12 публикации/месец)</li>
+            <li data-lang-key="pricingEssentialTwo">Facebook &amp; Instagram публикуване</li>
+            <li data-lang-key="pricingEssentialThree">Основен месечен отчет</li>
           </ul>
           <a class="outline-button full" href="#contact" data-i18n="buttons.contact">Свържи се с нас</a>
         </article>
 
         <article class="price-card featured reveal delay-1">
           <div class="popular" data-i18n="pricing.popular">НАЙ-ПОПУЛЯРЕН</div>
-          <p class="plan teal-text">STANDARD</p>
-          <div class="price"><strong>650</strong><span data-i18n="pricing.month">лв/мес</span></div>
-          <p class="plan-subtitle" data-i18n="pricing.standard.subtitle">Съдържание + реклами, които водят клиенти</p>
+          <p class="plan teal-text" data-lang-key="pricingGrowth">GROWTH</p>
+          <div class="price"><strong>€99</strong><span data-lang-key="pricingMonth">/месец</span></div>
+          <p class="plan-subtitle" data-lang-key="pricingGrowthSubtitle">Съдържание + автоматизация за постоянен растеж</p>
           <ul>
-            <li data-i18n="pricing.standard.one">Всичко от Basic</li>
-            <li data-i18n="pricing.standard.two">20 публикации/мес</li>
-            <li data-i18n="pricing.standard.three">Управление на реклами (бюджет отделно)</li>
-            <li data-i18n="pricing.standard.four">Месечен анализ на резултатите</li>
+            <li data-lang-key="pricingGrowthOne">Всичко от Essential</li>
+            <li data-lang-key="pricingGrowthTwo">20 публикации/месец</li>
+            <li data-lang-key="pricingGrowthThree">Управление на реклами (бюджет отделно)</li>
+            <li data-lang-key="pricingGrowthFour">Месечен анализ на резултатите</li>
           </ul>
           <a class="gradient-button full" href="#contact" data-i18n="buttons.contact">Свържи се с нас</a>
         </article>
 
         <article class="price-card reveal delay-2">
-          <p class="plan teal-text">PREMIUM</p>
-          <div class="price"><strong>950</strong><span data-i18n="pricing.month">лв/мес</span></div>
-          <p class="plan-subtitle" data-i18n="pricing.premium.subtitle">Пълен пакет — съдържание, реклами и дизайн</p>
+          <p class="plan teal-text" data-lang-key="pricingBusiness">BUSINESS</p>
+          <div class="price"><strong>€199</strong><span data-lang-key="pricingMonth">/месец</span></div>
+          <p class="plan-subtitle" data-lang-key="pricingBusinessSubtitle">Създаване, автоматизация и растеж в един план</p>
           <ul>
-            <li data-i18n="pricing.premium.one">Всичко от Standard</li>
-            <li data-i18n="pricing.premium.two">30 публикации/мес</li>
-            <li data-i18n="pricing.premium.three">Визуална идентичност & шаблони</li>
-            <li data-i18n="pricing.premium.four">Приоритетна поддръжка</li>
+            <li data-lang-key="pricingBusinessOne">Всичко от Growth</li>
+            <li data-lang-key="pricingBusinessTwo">30 публикации/месец</li>
+            <li data-lang-key="pricingBusinessThree">Визуална идентичност &amp; шаблони</li>
+            <li data-lang-key="pricingBusinessFour">Приоритетна поддръжка</li>
           </ul>
           <a class="outline-button full" href="#contact" data-i18n="buttons.contact">Свържи се с нас</a>
         </article>
       </div>
-      <p class="pricing-note" data-i18n="pricing.note">* Примерни цени — ще ги персонализираме според твоя бизнес.</p>
+      <p class="pricing-note" data-lang-key="pricingNote">Цените са месечни. Рекламният бюджет се заплаща отделно.</p>
+
+      <div class="pricing-addons reveal" id="pricing-addons">
+        <div class="pricing-addons-heading">
+          <div>
+            <p class="eyebrow" data-lang-key="pricingAddonsEyebrow">ADD-ON ПАКЕТИ</p>
+            <h3 data-lang-key="pricingAddonsTitle">Добави още публикации, когато са ти нужни</h3>
+          </div>
+          <p data-lang-key="pricingAddonsText">Гъвкави еднократни пакети към всеки активен план.</p>
+        </div>
+
+        <div class="pricing-addons-grid">
+          <article class="pricing-addon-card">
+            <div class="pricing-addon-count">+5</div>
+            <div class="pricing-addon-copy">
+              <h4 data-lang-key="pricingAddonFiveTitle">5 допълнителни публикации</h4>
+              <p data-lang-key="pricingAddonFiveText">Текст, визия и добавяне към календара.</p>
+            </div>
+            <div class="pricing-addon-price"><strong>€19</strong><span data-lang-key="pricingAddonOnce">еднократно</span></div>
+            <a class="outline-button pricing-addon-cta" href="#contact" data-lang-key="pricingAddonCta">Добави към плана</a>
+          </article>
+
+          <article class="pricing-addon-card pricing-addon-card-featured">
+            <div class="pricing-addon-label" data-lang-key="pricingAddonBest">НАЙ-ИЗБИРАН</div>
+            <div class="pricing-addon-count">+10</div>
+            <div class="pricing-addon-copy">
+              <h4 data-lang-key="pricingAddonTenTitle">10 допълнителни публикации</h4>
+              <p data-lang-key="pricingAddonTenText">Повече съдържание за кампании и активни месеци.</p>
+            </div>
+            <div class="pricing-addon-price"><strong>€35</strong><span data-lang-key="pricingAddonOnce">еднократно</span></div>
+            <a class="gradient-button pricing-addon-cta" href="#contact" data-lang-key="pricingAddonCta">Добави към плана</a>
+          </article>
+
+          <article class="pricing-addon-card">
+            <div class="pricing-addon-count">+20</div>
+            <div class="pricing-addon-copy">
+              <h4 data-lang-key="pricingAddonTwentyTitle">20 допълнителни публикации</h4>
+              <p data-lang-key="pricingAddonTwentyText">Най-добра стойност за по-интензивно присъствие.</p>
+            </div>
+            <div class="pricing-addon-price"><strong>€65</strong><span data-lang-key="pricingAddonOnce">еднократно</span></div>
+            <a class="outline-button pricing-addon-cta" href="#contact" data-lang-key="pricingAddonCta">Добави към плана</a>
+          </article>
+        </div>
+
+        <p class="pricing-addons-note" data-lang-key="pricingAddonsNote">Add-on пакетите се използват с активен месечен план и не се подновяват автоматично.</p>
+      </div>
     </section>
 
     <section class="testimonials section-shell divider-top" id="first-stories">
@@ -338,47 +462,90 @@
     <section class="contact section-shell divider-top" id="contact" data-section="contact">
       <div class="contact-card reveal">
         <div class="contact-copy">
-          <p class="eyebrow" data-i18n="contact.eyebrow">КОНТАКТ</p>
-          <h2 data-i18n="contact.title">Да поговорим за твоя бизнес</h2>
-          <p data-i18n="contact.text">Прати ни кратко запитване — ще се свържем с теб, за да обсъдим безплатния ти 30-дневен календар.</p>
+          <p class="eyebrow" data-lang-key="contactEyebrow">ЗАПИТВАНЕ</p>
+          <h2 data-lang-key="contactTitle">Нека дадем повече сила на твоя бранд</h2>
+          <p data-lang-key="contactText">Изпрати ни кратко запитване — ще се свържем с теб, за да обсъдим безплатния ти 30-дневен календар.</p>
           <div class="contact-details">
-            <a href="mailto:hello@bizomedia.bg">✉ hello@bizomedia.bg</a>
-            <span>⌖ Варна, България</span>
+            <a class="contact-detail-card" href="mailto:hello@bizomediastudio.com">
+              <span class="contact-detail-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 6.5h16v11H4z"></path><path d="m5 8 7 5 7-5"></path></svg>
+              </span>
+              <span><small data-lang-key="contactEmailLabel">ПИШИ НИ</small><strong>hello@bizomediastudio.com</strong></span>
+            </a>
+            <span class="contact-detail-card">
+              <span class="contact-detail-icon contact-detail-icon-location" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2.2"></circle></svg>
+              </span>
+              <span><small data-lang-key="contactLocationLabel">МЕСТОПОЛОЖЕНИЕ</small><strong data-lang-key="contactLocation">Варна, България · Работим онлайн</strong></span>
+            </span>
           </div>
         </div>
 
-        <form class="contact-form" name="bizomedia-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <form class="contact-form" id="contact-form" name="bizomedia-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="bizomedia-contact" />
           <p class="hidden"><label>Не попълвай: <input name="bot-field" /></label></p>
           <label>
-            <span data-i18n="form.name">ИМЕ</span>
-            <input type="text" name="name" required data-i18n-placeholder="form.namePlaceholder" placeholder="Въведи твоето име" />
+            <span data-lang-key="formNameLabel">ИМЕ</span>
+            <input type="text" name="name" required autocomplete="name" data-lang-placeholder="formNamePlaceholder" placeholder="Твоето име" />
           </label>
           <label>
-            <span data-i18n="form.email">ИМЕЙЛ</span>
-            <input type="email" name="email" required data-i18n-placeholder="form.emailPlaceholder" placeholder="Въведи твоя имейл" />
+            <span data-lang-key="formEmailLabel">ИМЕЙЛ</span>
+            <input type="email" name="email" required autocomplete="email" data-lang-placeholder="formEmailPlaceholder" placeholder="name@email.com" />
           </label>
           <label>
-            <span data-i18n="form.message">БИЗНЕС / СЪОБЩЕНИЕ</span>
-            <textarea name="message" rows="5" required data-i18n-placeholder="form.messagePlaceholder" placeholder="Разкажи ни за бизнеса си и как можем да помогнем..."></textarea>
+            <span data-lang-key="formBusinessLabel">БИЗНЕС / БРАНД</span>
+            <input type="text" name="business" required autocomplete="organization" data-lang-placeholder="formBusinessPlaceholder" placeholder="Име на бизнеса или уебсайт" />
           </label>
-          <button class="gradient-button full submit-button" type="submit" data-i18n="form.submit">Изпрати запитване</button>
-          <small data-i18n="form.reply">Отговаряме до 1 работен ден.</small>
+          <label>
+            <span data-lang-key="formServiceLabel">ОТ КАКВО ИМАШ НУЖДА?</span>
+            <select name="service" required>
+              <option value="" disabled selected data-lang-key="formServicePlaceholder">Избери услуга</option>
+              <option value="full-management" data-lang-key="formServiceFull">Цялостно управление</option>
+              <option value="social-media" data-lang-key="formServiceSocial">Социални мрежи</option>
+              <option value="advertising" data-lang-key="formServiceAds">Реклами</option>
+              <option value="design" data-lang-key="formServiceDesign">Дизайн</option>
+              <option value="not-sure" data-lang-key="formServiceUnsure">Все още не съм сигурен</option>
+            </select>
+          </label>
+          <label class="form-field-full">
+            <span data-lang-key="formMessageLabel">СЪОБЩЕНИЕ</span>
+            <textarea name="message" rows="5" required data-lang-placeholder="formMessagePlaceholder" placeholder="Разкажи ни накратко за бизнеса и целите си..."></textarea>
+          </label>
+          <button class="gradient-button full submit-button" type="submit">
+            <svg class="submit-plane-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 17-8-7 18-2.6-7.4L3 11Z"></path><path d="m10.4 13.6 4.5-4.5"></path></svg>
+            <span data-lang-key="formSubmit">Изпрати запитване</span>
+          </button>
+          <small class="form-reply" data-lang-key="formReply">Отговаряме до 1 работен ден.</small>
+          <small class="form-privacy"><span data-lang-key="formPrivacyPrefix">С изпращането потвърждаваш, че си запознат/а с нашата</span> <a href="privacy.html" data-lang-key="footerPrivacy">Политика за поверителност</a>.</small>
+          <div class="form-status" role="status" aria-live="polite" hidden></div>
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer section-shell">
-    <a class="brand" href="#home">
-      <img class="brand-logo" src="assets/bizomedia-logo.svg" alt="" />
-      <span class="brand-name">bizomedia</span>
-    </a>
-    <p>© 2026 Bizomedia · <span data-i18n="footer.location">Варна, България</span></p>
-    <a class="back-top" href="#top" aria-label="Към началото">↑</a>
+  <footer class="site-footer" id="footer">
+    <div class="footer-main section-shell">
+      <div class="footer-brand-block">
+        <a class="brand footer-brand" href="#home" aria-label="Bizomedia начало">
+          <img class="brand-logo" src="assets/bizomedia-logo.svg" alt="" />
+          <span class="brand-name"><b>bizo</b><i>media</i></span>
+        </a>
+        <p data-lang-key="footerTagline">Съдържание, реклама и дизайн за растящи брандове.</p>
+      </div>
+    </div>
+    <div class="footer-bottom section-shell">
+      <p>© 2026 Bizomedia Studio · <span data-lang-key="footerRights">Всички права запазени</span></p>
+      <span class="footer-quote" data-lang-key="footerQuote">Смелите идеи не чакат подходящия момент — те го създават</span>
+      <div class="footer-legal-links">
+        <a href="privacy.html" data-lang-key="footerPrivacy">Политика за поверителност</a>
+        <span aria-hidden="true">·</span>
+        <a href="terms.html" data-lang-key="footerTerms">Общи условия</a>
+      </div>
+      <a class="back-top" href="#top" aria-label="Към началото"><span aria-hidden="true">↑</span></a>
+    </div>
   </footer>
 
   <script src="script.js"></script>
-  <script src="language-extra.js"></script>
+  <script src="language-extra.js?v=footer-quote-final-20260830"></script>
 </body>
 </html>
