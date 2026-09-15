@@ -1,0 +1,22 @@
+.dashboard-body:not(.auth-ready) .dashboard-shell {
+  opacity: 0;
+}
+
+.dashboard-shell {
+  transition: opacity 0.18s ease;
+}
+
+.settings-message {
+  min-height: 22px;
+  margin: 14px 2px 0;
+  color: #84939e;
+  font-size: 12px;
+}
+
+.settings-message.success {
+  color: #59e29c;
+}
+
+.settings-message.error {
+  color: #ff8c9d;
+}

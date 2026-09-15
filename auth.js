@@ -29,12 +29,86 @@
     submit.textContent = isBusy ? "Моля, изчакай…" : submit.dataset.originalText;
   }
 
+  function getFallbackProfile(user) {
+    const metadata = user?.user_metadata || {};
+    return {
+      full_name: metadata.full_name || metadata.name || user?.email?.split("@")[0] || "Клиент",
+      business_name: metadata.business || "Моят бизнес",
+      preferred_language: metadata.preferred_language || localStorage.getItem("bizomedia-language") || "bg",
+      primary_channel: metadata.primary_channel || "Instagram"
+    };
+  }
+
+  function cacheProfile(profile, user) {
+    if (!profile) return;
+    localStorage.setItem("bizomedia-user-name", profile.full_name || "Клиент");
+    localStorage.setItem("bizomedia-user-business", profile.business_name || "Моят бизнес");
+    localStorage.setItem("bizomedia-language", profile.preferred_language || "bg");
+    if (user?.email) localStorage.setItem("bizomedia-user-email", user.email);
+  }
+
   function saveUser(user) {
     if (!user) return;
-    const metadata = user.user_metadata || {};
-    const fullName = metadata.full_name || metadata.name || user.email?.split("@")[0] || "Клиент";
-    localStorage.setItem("bizomedia-user-name", fullName);
-    localStorage.setItem("bizomedia-user-business", metadata.business || "Моят бизнес");
+    cacheProfile(getFallbackProfile(user), user);
+  }
+
+  async function loadProfile(user) {
+    const fallback = getFallbackProfile(user);
+    if (!client || !user) return fallback;
+
+    const { data, error } = await client
+      .from("profiles")
+      .select("full_name,business_name,preferred_language,primary_channel")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (error) {
+      console.warn("Bizomedia profile could not be loaded:", error.message);
+      cacheProfile(fallback, user);
+      return fallback;
+    }
+
+    const profile = { ...fallback, ...(data || {}) };
+    cacheProfile(profile, user);
+    return profile;
+  }
+
+  async function updateProfile(updates) {
+    if (!client) throw new Error("Профилът временно не е достъпен.");
+
+    const { data: sessionData, error: sessionError } = await client.auth.getSession();
+    if (sessionError || !sessionData.session?.user) {
+      throw new Error("Сесията е изтекла. Влез отново.");
+    }
+
+    const user = sessionData.session.user;
+    const current = getFallbackProfile(user);
+    const profile = {
+      id: user.id,
+      full_name: String(updates.full_name || current.full_name).trim(),
+      business_name: String(updates.business_name || current.business_name).trim(),
+      preferred_language: updates.preferred_language === "en" ? "en" : "bg",
+      primary_channel: String(updates.primary_channel || current.primary_channel),
+      updated_at: new Date().toISOString()
+    };
+
+    const { data, error } = await client
+      .from("profiles")
+      .upsert(profile, { onConflict: "id" })
+      .select("full_name,business_name,preferred_language,primary_channel")
+      .single();
+    if (error) throw error;
+
+    await client.auth.updateUser({
+      data: {
+        full_name: data.full_name,
+        business: data.business_name,
+        preferred_language: data.preferred_language,
+        primary_channel: data.primary_channel
+      }
+    });
+    cacheProfile(data, user);
+    return data;
   }
 
   document.querySelectorAll(".password-toggle").forEach((button) => {
@@ -158,7 +232,10 @@
 
   async function protectDashboard() {
     if (!document.body.matches("[data-auth-required]")) return;
-    if (localStorage.getItem("bizomedia-demo") === "1") return;
+    if (localStorage.getItem("bizomedia-demo") === "1") {
+      document.body.classList.add("auth-ready");
+      return;
+    }
     if (!client) {
       location.replace("login.html");
       return;
@@ -169,8 +246,13 @@
       return;
     }
     saveUser(data.session.user);
+    const profile = await loadProfile(data.session.user);
+    document.dispatchEvent(new CustomEvent("bizomedia:profile-ready", {
+      detail: { user: data.session.user, profile }
+    }));
+    document.body.classList.add("auth-ready");
   }
 
   protectDashboard();
-  window.BizomediaAuth = { client, configured };
+  window.BizomediaAuth = { client, configured, loadProfile, updateProfile };
 })();

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="dashboard.css"><link rel="stylesheet" href="dashboard-embed.css">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="dashboard.css"><link rel="stylesheet" href="dashboard-embed.css"><link rel="stylesheet" href="dashboard-profile.css">
 </head>
 <body class="dashboard-body" data-auth-required>
 <div class="dashboard-shell">
@@ -26,7 +26,7 @@
       <button class="sidebar-link" data-view="settings"><span class="nav-ico">⚙</span>Настройки</button>
     </nav>
     <div class="sidebar-bottom">
-      <div class="account-mini"><div class="account-avatar brand-account-avatar"><img src="assets/bizomedia-logo.svg" alt=""></div><div><strong>Bizomedia Studio</strong><span>Работно пространство</span></div></div>
+      <div class="account-mini"><div class="account-avatar" data-user-initials>К</div><div><strong data-user-name>Клиент</strong><span data-user-business>Моят бизнес</span></div></div>
       <button class="logout-button" data-logout>↪ Изход</button>
     </div>
   </aside>
@@ -39,13 +39,13 @@
       </div>
       <div class="topbar-actions">
         <button class="icon-button" title="Известия">♢</button>
-        <div class="top-user"><div class="account-avatar brand-account-avatar"><img src="assets/bizomedia-logo.svg" alt=""></div><div><strong>Bizomedia Studio</strong><span>Работно пространство</span></div></div>
+        <div class="top-user"><div class="account-avatar" data-user-initials>К</div><div><strong data-user-name>Клиент</strong><span data-user-business>Моят бизнес</span></div></div>
       </div>
     </header>
 
     <div class="dashboard-content">
       <section class="dashboard-panel active" data-panel="overview">
-        <div class="panel-heading"><div><h2>My Bizomedia Studio</h2><p>Всичко за съдържанието и резултатите на едно място.</p></div><div class="demo-status" data-auth-status>Studio overview</div></div>
+        <div class="panel-heading"><div><h2>Здравей, <span data-user-first>Клиент</span> 👋</h2><p>Всичко за съдържанието и резултатите на едно място.</p></div><div class="demo-status" data-auth-status>Активен профил</div></div>
         <div class="metrics-grid">
           <article class="metric-card"><div class="metric-top"><span>Публикации този месец</span><span class="metric-icon">✎</span></div><div class="metric-value">24 <small>/ 30</small></div><div class="metric-change">80% изпълнение</div><div class="metric-progress"><span style="width:80%"></span></div></article>
           <article class="metric-card"><div class="metric-top"><span>Reach</span><span class="metric-icon">◉</span></div><div class="metric-value">124.5K</div><div class="metric-change">↑ 18.2%</div></article>
@@ -179,9 +179,10 @@
       <section class="dashboard-panel" data-panel="settings">
         <div class="panel-heading"><div><h2>Настройки</h2><p>Профил, бизнес и предпочитания.</p></div></div>
         <div class="settings-grid">
-          <article class="dashboard-card settings-card"><div class="card-header"><h3>Профил</h3></div><label><span>ИМЕ</span><input data-settings-name value="Иван Петров"></label><label><span>ИМЕЙЛ</span><input data-settings-email value="demo@bizomedia.bg" disabled></label><button class="gradient-button" data-save-settings>Запази</button></article>
-          <article class="dashboard-card settings-card"><div class="card-header"><h3>Бизнес</h3></div><label><span>ИМЕ НА БИЗНЕСА</span><input data-settings-business value="Urban Café"></label><label><span>ОСНОВЕН КАНАЛ</span><select><option>Instagram</option><option>Facebook</option><option>LinkedIn</option><option>X</option><option>Google Ads</option></select></label><button class="outline-button" data-save-settings>Запази промените</button></article>
+          <article class="dashboard-card settings-card"><div class="card-header"><h3>Профил</h3></div><label><span>ИМЕ</span><input data-settings-name autocomplete="name" placeholder="Име и фамилия"></label><label><span>ИМЕЙЛ</span><input data-settings-email type="email" disabled></label><label><span>ЕЗИК</span><select data-settings-language><option value="bg">Български</option><option value="en">English</option></select></label><button class="gradient-button" data-save-settings>Запази</button></article>
+          <article class="dashboard-card settings-card"><div class="card-header"><h3>Бизнес</h3></div><label><span>ИМЕ НА БИЗНЕСА</span><input data-settings-business placeholder="Име на бизнеса"></label><label><span>ОСНОВЕН КАНАЛ</span><select data-settings-channel><option>Instagram</option><option>Facebook</option><option>LinkedIn</option><option>X</option><option>Google Ads</option></select></label><button class="outline-button" data-save-settings>Запази промените</button></article>
         </div>
+        <p class="settings-message" data-settings-message aria-live="polite"></p>
       </section>
     </div>
   </main>
