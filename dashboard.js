@@ -107,6 +107,22 @@
     renderProfile(demoProfile, "demo@bizomedia.bg");
   }
 
+  async function hydrateAuthenticatedProfile() {
+    const auth = window.BizomediaAuth;
+    if (!auth?.client) return;
+
+    const { data, error } = await auth.client.auth.getSession();
+    const user = data?.session?.user;
+    if (error || !user) return;
+
+    localStorage.removeItem("bizomedia-demo");
+    const profile = await auth.loadProfile(user);
+    activeProfile = { ...activeProfile, ...profile };
+    renderProfile(activeProfile, user.email || "");
+  }
+
+  hydrateAuthenticatedProfile();
+
   const settingsMessage = document.querySelector("[data-settings-message]");
   document.querySelectorAll("[data-save-settings]").forEach((button) => {
     button.addEventListener("click", async () => {
