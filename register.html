@@ -11,7 +11,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="app.css"><link rel="stylesheet" href="auth-enhancements.css">
 </head>
 <body>
 <main class="auth-page">
@@ -23,9 +23,9 @@
       <div class="auth-brand-copy">
         <p class="eyebrow">BIZOMEDIA CLIENT PORTAL</p>
         <h1>Съдържание и реклами.<br><span class="gradient-text">Под твой контрол.</span></h1>
-        <p>Календар, одобрения и резултати за Facebook, Instagram, LinkedIn, X и Google Ads — в една защитена клиентска платформа.</p>
+        <p>Календар, одобрения и резултати за Instagram, Facebook, LinkedIn, X, TikTok, Google Ads и Email Marketing — в една защитена клиентска платформа.</p>
         <div class="auth-channel-row">
-          <span>◎ Instagram</span><span>f Facebook</span><span>in LinkedIn</span><span>𝕏 X</span><span>G Google Ads</span>
+          <span>◎ Instagram</span><span>f Facebook</span><span>in LinkedIn</span><span>𝕏 X</span><span>♪ TikTok</span><span>G Google Ads</span><span>✉ Email</span>
         </div>
       </div>
       <div class="auth-brand-footer">© 2026 Bizomedia · Варна, България</div>
@@ -34,7 +34,7 @@
     <div class="auth-box">
       <a class="back-site" href="index.html">← Обратно към сайта</a>
       <h2>Създай профил</h2>
-      <p class="auth-subtitle">Започни с личен клиентски dashboard.</p>
+      <p class="auth-subtitle">Създай профил, а след потвърждението ще настроиш каналите, пакета и своето лого.</p>
       <div class="auth-mode-banner"></div>
       <form class="auth-form" data-auth-form="register">
         <div class="field-row">
@@ -43,17 +43,19 @@
         </div>
         <label><span>ИМЕЙЛ</span><div class="auth-input-wrap"><input type="email" name="email" autocomplete="email" required placeholder="name@company.com"></div></label>
         <div class="field-row">
-          <label><span>ПАРОЛА</span><div class="auth-input-wrap"><input type="password" name="password" autocomplete="new-password" minlength="8" required placeholder="Поне 8 символа"><button type="button" class="password-toggle" aria-label="Покажи паролата">◉</button></div></label>
-          <label><span>ПОВТОРИ ПАРОЛАТА</span><div class="auth-input-wrap"><input type="password" name="confirmPassword" autocomplete="new-password" minlength="8" required placeholder="Повтори паролата"><button type="button" class="password-toggle" aria-label="Покажи паролата">◉</button></div></label>
+          <label><span>ПАРОЛА</span><div class="auth-input-wrap"><input type="password" name="password" autocomplete="new-password" minlength="10" required placeholder="Поне 10 символа"><button type="button" class="password-toggle" aria-label="Покажи паролата">◉</button></div></label>
+          <label><span>ПОВТОРИ ПАРОЛАТА</span><div class="auth-input-wrap"><input type="password" name="confirmPassword" autocomplete="new-password" minlength="10" required placeholder="Повтори паролата"><button type="button" class="password-toggle" aria-label="Покажи паролата">◉</button></div></label>
         </div>
-        <label class="checkbox-label"><input type="checkbox" required> Съгласявам се с условията и политиката за поверителност.</label>
+        <p class="password-requirements">Минимум 10 символа, главна и малка буква и цифра.</p>
+        <label class="checkbox-label legal-consent"><input type="checkbox" name="legalConsent" required> <span>Съгласявам се с <a href="terms.html" target="_blank" rel="noopener">Общите условия</a> и <a href="privacy.html" target="_blank" rel="noopener">Политиката за поверителност</a>.</span></label>
         <button class="gradient-button auth-submit full" type="submit">Създай профил</button>
       </form>
       <div class="auth-message"></div>
+      <button class="resend-confirmation" type="button" data-resend-confirmation hidden>Изпрати отново имейла за потвърждение</button>
       <p class="auth-bottom">Вече имаш профил? <a href="login.html">Вход</a></p>
     </div>
   </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script><script src="auth.js"></script>
+<script src="supabase-config.js"></script><script src="auth.js?v=20260918-1"></script>
 </body></html>

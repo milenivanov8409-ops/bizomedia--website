@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#05090d">
+  <title>Bizomedia Control</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="messages.css">
+  <link rel="stylesheet" href="channels.css">
+  <link rel="stylesheet" href="admin-channels.css">
+  <style>.admin-shell[hidden],.admin-gate[hidden]{display:none!important}</style>
+</head>
+<body class="admin-body">
+  <div class="admin-shell" data-admin-shell hidden>
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="index.html"><img src="assets/bizomedia-logo.svg" alt="Bizomedia"><span><strong>bizomedia</strong><small>CONTROL</small></span></a>
+      <nav class="admin-nav" aria-label="Администраторска навигация">
+        <button class="admin-nav-link active" data-admin-filter="all"><span>⌂</span>Общ преглед</button>
+        <button class="admin-nav-link" data-admin-filter="requested"><span>＋</span>Нови заявки<i data-count-requested>0</i></button>
+        <button class="admin-nav-link" data-admin-filter="in_progress"><span>◌</span>В подготовка<i data-count-progress>0</i></button>
+        <button class="admin-nav-link" data-admin-filter="pending"><span>✓</span>За одобрение<i data-count-pending>0</i></button>
+        <button class="admin-nav-link" data-admin-filter="changes_requested"><span>↺</span>Корекции<i data-count-corrections>0</i></button>
+        <button class="admin-nav-link" data-open-admin-channels><span>⌁</span>Канални заявки<i data-admin-channel-count hidden>0</i></button>
+        <button class="admin-nav-link" data-open-admin-messages><span>✦</span>AI разговори<i data-admin-message-count hidden>0</i></button>
+      </nav>
+      <div class="admin-sidebar-foot">
+        <div class="admin-user"><span class="admin-avatar" data-admin-initials>BI</span><div><strong data-admin-name>Bizomedia</strong><small>Администратор</small></div></div>
+        <button class="admin-logout" data-admin-logout>↪ Изход</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <button class="admin-menu-button" data-admin-menu aria-label="Отвори меню">☰</button>
+        <div><span class="admin-eyebrow">ВЪТРЕШЕН ПАНЕЛ</span><h1>Bizomedia Control</h1></div>
+        <div class="admin-live"><i></i><span data-admin-mode>Защитен достъп</span></div>
+      </header>
+
+      <div class="admin-content">
+        <section class="admin-welcome">
+          <div><h2>Работно табло</h2><p>Управлявай клиентските заявки и изпращай готовото съдържание за одобрение.</p></div>
+          <div class="admin-welcome-actions"><button class="admin-plan-button" data-open-plan>✦ AI месечен план</button><button class="admin-refresh" data-admin-refresh>↻ Обнови</button></div>
+        </section>
+
+        <section class="admin-metrics" aria-label="Обобщение">
+          <article><span>Всички активни</span><strong data-metric-active>0</strong><small>материала</small></article>
+          <article class="cyan"><span>Нови заявки</span><strong data-metric-requested>0</strong><small>за преглед</small></article>
+          <article class="blue"><span>В подготовка</span><strong data-metric-progress>0</strong><small>работни</small></article>
+          <article class="violet"><span>Чакат клиент</span><strong data-metric-pending>0</strong><small>за решение</small></article>
+        </section>
+
+        <section class="admin-workspace">
+          <div class="admin-workspace-head">
+            <div><h3 data-list-title>Всички заявки</h3><p data-list-summary>Зареждаме съдържанието…</p></div>
+            <div class="admin-tools">
+              <label class="admin-search"><span>⌕</span><input type="search" placeholder="Търси клиент или публикация" data-admin-search></label>
+              <select data-admin-status aria-label="Филтър по статус">
+                <option value="all">Всички статуси</option>
+                <option value="requested">Нови заявки</option>
+                <option value="in_progress">В подготовка</option>
+                <option value="pending">За одобрение</option>
+                <option value="changes_requested">За корекция</option>
+                <option value="approved">Одобрени</option>
+                <option value="scheduled">Планирани</option>
+                <option value="published">Публикувани</option>
+              </select>
+            </div>
+          </div>
+          <div class="admin-list" data-admin-list><div class="admin-empty">Зареждаме клиентските заявки…</div></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <section class="admin-gate" data-admin-gate>
+    <div class="admin-gate-card">
+      <img src="assets/bizomedia-logo.svg" alt="Bizomedia">
+      <span class="admin-eyebrow">BIZOMEDIA CONTROL</span>
+      <h1 data-gate-title>Проверяваме достъпа…</h1>
+      <p data-gate-message>Моля, изчакай за момент.</p>
+      <a class="admin-gate-button" href="login.html" data-gate-action hidden>Към входа</a>
+    </div>
+  </section>
+
+  <dialog class="admin-dialog" data-admin-dialog>
+    <form class="admin-edit-form" data-admin-form>
+      <header class="admin-dialog-head">
+        <div><span class="admin-eyebrow">УПРАВЛЕНИЕ НА ЗАЯВКА</span><h2 data-edit-heading>Публикация</h2></div>
+        <button type="button" data-admin-close aria-label="Затвори">×</button>
+      </header>
+      <div class="admin-client-card"><span class="admin-client-logo" data-edit-client-initials>К</span><div><strong data-edit-business>Клиент</strong><small data-edit-client>Име на клиент</small></div><span class="admin-status" data-edit-current-status>Заявена</span></div>
+      <div class="admin-feedback" data-edit-feedback hidden><span>ОБРАТНА ВРЪЗКА ОТ КЛИЕНТА</span><p data-edit-feedback-text></p></div>
+      <section class="admin-ai-box" aria-labelledby="admin-ai-title">
+        <div class="admin-ai-head">
+          <span class="admin-ai-icon">✦</span>
+          <div><strong id="admin-ai-title">AI подготовка на съдържание</strong><small>Изкуственият интелект подготвя публикацията, а ти одобряваш резултата.</small></div>
+          <span class="admin-ai-badge">BIZOMEDIA AI</span>
+        </div>
+        <div class="admin-ai-options">
+          <label><span>ЦЕЛ</span><select name="aiGoal"><option value="engagement">Повече ангажираност</option><option value="sales">Продажби и запитвания</option><option value="awareness">Разпознаваемост</option><option value="education">Полезно съдържание</option></select></label>
+          <label><span>ТОН</span><select name="aiTone"><option value="professional">Професионален</option><option value="friendly">Приятелски</option><option value="confident">Уверен</option><option value="premium">Премиум</option><option value="playful">Закачлив</option></select></label>
+        </div>
+        <label><span>ДОПЪЛНИТЕЛНА НАСОКА (НЕЗАДЪЛЖИТЕЛНО)</span><textarea name="aiBrief" rows="2" maxlength="600" placeholder="Например: включи офертата, работното време или конкретен призив към клиента"></textarea></label>
+        <div class="admin-ai-actions">
+          <button type="button" class="admin-ai-generate" data-generate-ai><span>✦</span> Генерирай с AI</button>
+          <small>Резултатът попълва полетата, но не се изпраща автоматично.</small>
+        </div>
+        <div class="admin-ai-result" data-ai-result hidden><span>ИДЕЯ ЗА ВИЗИЯ</span><p data-ai-visual></p></div>
+        <section class="admin-visual-studio" aria-labelledby="admin-visual-title">
+          <div class="admin-visual-head">
+            <div><strong id="admin-visual-title">AI визия за публикацията</strong><small>Създава чернова без хора и без измислени рекламни твърдения.</small></div>
+            <span>СТЪПКА 2</span>
+          </div>
+          <div class="admin-visual-layout">
+            <div class="admin-visual-preview is-empty" data-visual-preview>
+              <div class="admin-visual-placeholder" data-visual-placeholder><i>✦</i><strong>Визията ще се появи тук</strong><small>Първо подготви текста, после генерирай изображението.</small></div>
+              <img data-visual-image alt="Преглед на визията за публикацията" hidden>
+              <span class="admin-visual-draft" data-visual-draft hidden>ЧЕРНОВА</span>
+            </div>
+            <div class="admin-visual-controls">
+              <button type="button" class="admin-visual-generate" data-generate-visual><span>◈</span> Генерирай визия с AI</button>
+              <label class="admin-visual-upload"><input type="file" accept="image/png,image/jpeg,image/webp" data-visual-file><span>↑</span> Качи готов файл</label>
+              <button type="button" class="admin-visual-remove" data-remove-visual hidden>Премахни визията</button>
+              <small>Изображението се добавя към публикацията едва когато натиснеш „Запази промените“.</small>
+            </div>
+          </div>
+        </section>
+      </section>
+      <div class="admin-edit-grid">
+        <label><span>ЗАГЛАВИЕ</span><input name="title" required maxlength="120"></label>
+        <label><span>КАНАЛ</span><select name="channel"><option>Instagram</option><option>Facebook</option><option>LinkedIn</option><option>X</option><option>TikTok</option><option>Google Ads</option><option>Email</option></select></label>
+        <label><span>ЖЕЛАНА ДАТА</span><input name="scheduledAt" type="datetime-local"></label>
+        <label><span>СТАТУС</span><select name="status"><option value="requested">Заявена</option><option value="in_progress">Подготвя се</option><option value="pending">За одобрение</option><option value="approved">Одобрена</option><option value="changes_requested">За корекция</option><option value="scheduled">Планирана</option><option value="published">Публикувана</option><option value="cancelled">Отказана</option></select></label>
+      </div>
+      <label><span>ТЕКСТ / ОПИСАНИЕ</span><textarea name="caption" rows="7" maxlength="1200"></textarea></label>
+      <p class="admin-form-message" data-admin-message aria-live="polite"></p>
+      <footer class="admin-dialog-actions">
+        <button type="button" class="admin-secondary" data-mark-progress>Започни подготовка</button>
+        <button type="submit" class="admin-primary">Запази промените</button>
+        <button type="button" class="admin-send" data-send-approval>Изпрати за одобрение →</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog class="admin-plan-dialog" data-plan-dialog>
+    <form class="admin-plan-form" data-plan-form>
+      <header class="admin-dialog-head">
+        <div><span class="admin-eyebrow">BIZOMEDIA AI PLANNER</span><h2>Месечен план за съдържание</h2><p>AI разпределя идеите по канали и дати. Нищо не се добавя без твоето потвърждение.</p></div>
+        <button type="button" data-close-plan aria-label="Затвори">×</button>
+      </header>
+      <div class="admin-plan-grid">
+        <label><span>КЛИЕНТ</span><select name="planClient" required data-plan-client></select></label>
+        <label><span>МЕСЕЦ</span><input name="planMonth" type="month" required data-plan-month></label>
+        <label><span>БРОЙ ПУБЛИКАЦИИ</span><select name="planCount"><option value="4">4 публикации</option><option value="8" selected>8 публикации</option><option value="12">12 публикации</option></select></label>
+        <label><span>ОСНОВНА ЦЕЛ</span><select name="planGoal"><option value="balanced">Балансиран план</option><option value="engagement">Ангажираност</option><option value="sales">Продажби и запитвания</option><option value="awareness">Разпознаваемост</option><option value="education">Полезно съдържание</option></select></label>
+      </div>
+      <label><span>НАСОКА ЗА МЕСЕЦА (НЕЗАДЪЛЖИТЕЛНО)</span><textarea name="planBrief" rows="3" maxlength="800" placeholder="Например: нова услуга, сезонна тема, конкретна оферта или важни дати"></textarea></label>
+      <div class="admin-plan-generate-row"><button type="button" class="admin-plan-generate" data-generate-plan>✦ Създай месечен план</button><small>Локалното демо не използва AI кредити.</small></div>
+      <p class="admin-plan-message" data-plan-message aria-live="polite"></p>
+      <section class="admin-plan-results" data-plan-results hidden>
+        <div class="admin-plan-results-head"><div><strong>Предложен календар</strong><small>Можеш да изключиш всяка идея, която не искаш.</small></div><button type="button" data-plan-toggle>Премахни избора</button></div>
+        <div class="admin-plan-list" data-plan-list></div>
+      </section>
+      <footer class="admin-plan-actions"><button type="button" class="admin-secondary" data-close-plan>Отказ</button><button type="submit" class="admin-send" data-save-plan disabled>Добави избраните към календара →</button></footer>
+    </form>
+  </dialog>
+
+  <dialog class="admin-messages-dialog" data-admin-messages-dialog>
+    <section class="admin-messages-shell">
+      <header class="admin-dialog-head admin-messages-head">
+        <div><span class="admin-eyebrow">BIZOMEDIA AI ASSISTANT</span><h2>AI разговори</h2><p>AI отговаря автоматично. Тук виждаш разговорите, които изискват внимание.</p></div>
+        <button type="button" data-close-admin-messages aria-label="Затвори">×</button>
+      </header>
+      <div class="admin-messages-layout">
+        <aside class="admin-message-clients" data-admin-message-clients><div class="admin-message-empty">Зареждаме клиентите…</div></aside>
+        <section class="admin-message-chat">
+          <div class="admin-message-chat-head"><div><strong data-admin-message-business>Избери клиент</strong><small data-admin-message-client>AI разговорът ще се покаже тук.</small></div><div class="admin-message-head-actions"><button type="button" data-mark-admin-reviewed title="Маркирай прегледано">✓</button><button type="button" data-admin-message-refresh title="Обнови">↻</button></div></div>
+          <div class="admin-message-thread" data-admin-message-thread><div class="admin-message-empty">Все още няма избран разговор.</div></div>
+          <div class="admin-ai-conversation-note"><span>✦</span><p><strong>AI води разговора вместо теб</strong>Маркираните казуси са само за преглед и не изискват незабавен ръчен отговор.</p></div>
+          <p class="admin-message-status" data-admin-message-status aria-live="polite"></p>
+        </section>
+      </div>
+    </section>
+  </dialog>
+
+  <dialog class="admin-messages-dialog admin-channels-dialog" data-admin-channels-dialog>
+    <section class="admin-messages-shell admin-channels-shell">
+      <header class="admin-dialog-head admin-messages-head">
+        <div><span class="admin-eyebrow">CHANNEL CONNECTIONS</span><h2>Канални заявки</h2><p>Потвърждавай само профили, за които официалният достъп вече е проверен.</p></div>
+        <button type="button" data-close-admin-channels aria-label="Затвори">×</button>
+      </header>
+      <div class="admin-channel-toolbar"><span data-admin-channel-summary>Зареждаме заявките…</span><button type="button" class="admin-refresh" data-admin-channel-refresh>↻ Обнови</button></div>
+      <div class="admin-channel-list" data-admin-channel-list><div class="admin-message-empty">Зареждаме каналите…</div></div>
+      <p class="admin-message-status" data-admin-channel-message aria-live="polite"></p>
+    </section>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="auth.js?v=20260918-1"></script>
+  <script src="admin.js?v=20260918-1"></script>
+  <script src="admin-channels.js?v=20260918-1"></script>
+  <script src="messages.js?v=20260917-2"></script>
+</body>
+</html>

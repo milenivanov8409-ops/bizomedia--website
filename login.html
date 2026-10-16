@@ -11,7 +11,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="app.css"><link rel="stylesheet" href="auth-enhancements.css">
 </head>
 <body>
 <main class="auth-page">
@@ -34,7 +34,7 @@
     <div class="auth-box">
       <a class="back-site" href="index.html">← Обратно към сайта</a>
       <h2>Добре дошъл</h2>
-      <p class="auth-subtitle">Влез в своя Bizomedia dashboard.</p>
+      <p class="auth-subtitle">Влез в своето My Bizomedia Studio.</p>
       <div class="auth-mode-banner"></div>
       <form class="auth-form" data-auth-form="login">
         <label><span>ИМЕЙЛ</span><div class="auth-input-wrap"><input type="email" name="email" autocomplete="email" required placeholder="name@company.com"></div></label>
@@ -43,6 +43,7 @@
         <button class="gradient-button auth-submit full" type="submit">Вход</button>
       </form>
       <div class="auth-message"></div>
+      <button class="resend-confirmation" type="button" data-resend-confirmation hidden>Изпрати отново имейла за потвърждение</button>
       <div class="auth-separator">или разгледай платформата</div>
       <button class="demo-login" type="button">Отвори демо dashboard</button>
       <p class="auth-bottom">Нямаш профил? <a href="register.html">Регистрация</a></p>
@@ -50,5 +51,5 @@
   </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script><script src="auth.js"></script>
+<script src="supabase-config.js"></script><script src="auth.js?v=20260918-1"></script>
 </body></html>

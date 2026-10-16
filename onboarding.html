@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#05090d">
+  <meta name="application-name" content="Bizomedia">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Bizomedia">
+  <title>Настрой своето студио · Bizomedia</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="auth-enhancements.css">
+</head>
+<body class="onboarding-body" data-auth-required data-page="onboarding">
+  <main class="onboarding-page">
+    <header class="onboarding-header">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/bizomedia-logo.svg" alt="Bizomedia logo">
+        <span class="brand-name gradient-text">bizomedia</span>
+      </a>
+      <span class="onboarding-secure">● Защитен клиентски профил</span>
+    </header>
+
+    <section class="onboarding-shell">
+      <div class="onboarding-intro">
+        <p class="eyebrow">MY BIZOMEDIA STUDIO</p>
+        <h1>Нека подготвим<br><span class="gradient-text">твоето студио</span></h1>
+        <p>Три кратки стъпки, за да персонализираме календара, съдържанието и препоръките за твоя бизнес.</p>
+        <div class="onboarding-benefits">
+          <span>✓ Персонален календар</span>
+          <span>✓ Всички канали на едно място</span>
+          <span>✓ Можеш да променяш всичко по-късно</span>
+        </div>
+      </div>
+
+      <div class="onboarding-card">
+        <div class="onboarding-progress" aria-label="Напредък">
+          <span class="active" data-step-dot="1">1</span><i></i>
+          <span data-step-dot="2">2</span><i></i>
+          <span data-step-dot="3">3</span>
+        </div>
+        <div class="onboarding-message" data-onboarding-message></div>
+
+        <form data-onboarding-form>
+          <section class="onboarding-step active" data-step="1">
+            <p class="step-kicker">СТЪПКА 1 ОТ 3</p>
+            <h2>Твоят бизнес</h2>
+            <p class="step-copy">Добави името и логото, които ще виждаш в студиото.</p>
+
+            <label class="onboarding-field">
+              <span>ИМЕ НА БИЗНЕСА</span>
+              <input type="text" name="business" required placeholder="Например Urban Café">
+            </label>
+
+            <label class="logo-upload">
+              <input type="file" name="logo" accept="image/png,image/jpeg,image/webp">
+              <span class="logo-preview" data-logo-preview>
+                <img data-logo-image alt="Лого на бизнеса" hidden>
+                <b data-logo-placeholder>+</b>
+              </span>
+              <span><strong>Добави лого</strong><small>PNG, JPG или WebP · до 2 MB</small></span>
+            </label>
+            <button class="remove-logo-button" type="button" data-remove-logo hidden>Премахни логото</button>
+
+            <div class="onboarding-actions end">
+              <button class="gradient-button" type="button" data-next-step>Продължи →</button>
+            </div>
+          </section>
+
+          <section class="onboarding-step" data-step="2">
+            <p class="step-kicker">СТЪПКА 2 ОТ 3</p>
+            <h2>Къде присъства брандът ти?</h2>
+            <p class="step-copy">Избери всички канали, които искаш да управляваш.</p>
+
+            <div class="channel-picker">
+              <label><input type="checkbox" name="channels" value="Instagram" checked><span><b class="channel-symbol instagram">◎</b>Instagram</span></label>
+              <label><input type="checkbox" name="channels" value="Facebook"><span><b class="channel-symbol facebook">f</b>Facebook</span></label>
+              <label><input type="checkbox" name="channels" value="LinkedIn"><span><b class="channel-symbol linkedin">in</b>LinkedIn</span></label>
+              <label><input type="checkbox" name="channels" value="X"><span><b class="channel-symbol x">𝕏</b>X</span></label>
+              <label><input type="checkbox" name="channels" value="TikTok"><span><b class="channel-symbol tiktok">♪</b>TikTok</span></label>
+              <label><input type="checkbox" name="channels" value="Google Ads"><span><b class="channel-symbol google">G</b>Google Ads</span></label>
+              <label><input type="checkbox" name="channels" value="Email"><span><b class="channel-symbol email-symbol">✉</b>Email Marketing</span></label>
+            </div>
+
+            <div class="onboarding-actions">
+              <button class="outline-button" type="button" data-prev-step>← Назад</button>
+              <button class="gradient-button" type="button" data-next-step>Продължи →</button>
+            </div>
+          </section>
+
+          <section class="onboarding-step" data-step="3">
+            <p class="step-kicker">СТЪПКА 3 ОТ 3</p>
+            <h2>Избери предпочитан план</h2>
+            <p class="step-copy">Ще потвърдим плана преди активиране и плащане. Можеш да го промениш по-късно.</p>
+
+            <div class="onboarding-plans">
+              <label>
+                <input type="radio" name="plan" value="essential" checked>
+                <span><strong>Essential</strong><small>12 публикации · €49/месец</small></span>
+              </label>
+              <label class="recommended">
+                <em>НАЙ-ПОПУЛЯРЕН</em>
+                <input type="radio" name="plan" value="growth">
+                <span><strong>Growth</strong><small>20 публикации + реклами · €99/месец</small></span>
+              </label>
+              <label>
+                <input type="radio" name="plan" value="business">
+                <span><strong>Business</strong><small>30 публикации + пълно управление · €199/месец</small></span>
+              </label>
+            </div>
+
+            <div class="onboarding-actions">
+              <button class="outline-button" type="button" data-prev-step>← Назад</button>
+              <button class="gradient-button" type="submit">Отвори моето студио →</button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="auth.js?v=20260918-1"></script>
+  <script src="onboarding.js?v=20260916-2"></script>
+</body>
+</html>

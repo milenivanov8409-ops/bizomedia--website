@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="dashboard.css"><link rel="stylesheet" href="dashboard-embed.css"><link rel="stylesheet" href="dashboard-profile.css">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="dashboard.css"><link rel="stylesheet" href="dashboard-embed.css"><link rel="stylesheet" href="dashboard-profile.css"><link rel="stylesheet" href="messages.css"><link rel="stylesheet" href="channels.css">
 </head>
 <body class="dashboard-body" data-auth-required>
 <div class="dashboard-shell">
@@ -28,7 +28,7 @@
       <button class="sidebar-link" data-view="channels"><span class="nav-ico">⌁</span>Канали</button>
       <button class="sidebar-link" data-view="ads"><span class="nav-ico">◈</span>Реклами</button>
       <button class="sidebar-link" data-view="analytics"><span class="nav-ico">▥</span>Анализи</button>
-      <button class="sidebar-link" data-view="messages"><span class="nav-ico">○</span>Съобщения<span class="sidebar-count">2</span></button>
+      <button class="sidebar-link" data-view="messages"><span class="nav-ico">○</span>Съобщения<span class="sidebar-count" data-message-unread hidden>0</span></button>
       <button class="sidebar-link" data-view="settings"><span class="nav-ico">⚙</span>Настройки</button>
     </nav>
     <div class="sidebar-bottom">
@@ -100,7 +100,7 @@
             <div class="post-list">
               <div class="post-row"><div class="metric-icon">✓</div><div><strong>Одобри 3 публикации</strong><span>Краен срок: 22 май</span></div><span class="status-pill pending">Важно</span></div>
               <div class="post-row"><div class="metric-icon">◈</div><div><strong>Потвърди Google Ads бюджет</strong><span>Кампания: Лято 2026</span></div><span class="status-pill draft">Преглед</span></div>
-              <div class="post-row"><div class="metric-icon">○</div><div><strong>Отговори на съобщение</strong><span>Мария от Bizomedia</span></div><span class="status-pill pending">Ново</span></div>
+              <div class="post-row"><div class="metric-icon">✦</div><div><strong>Попитай Bizomedia AI</strong><span>Асистентът е винаги на разположение</span></div><span class="status-pill approved">AI</span></div>
             </div>
           </article>
         </div>
@@ -134,14 +134,9 @@
       </section>
 
       <section class="dashboard-panel" data-panel="channels">
-        <div class="panel-heading"><div><h2>Канали</h2><p>Управлявай социалните профили и рекламните акаунти.</p></div><div class="demo-status">Demo връзки</div></div>
-        <div class="channel-grid">
-          <article class="channel-card" data-channel="Instagram"><div class="channel-card-head"><div class="platform-logo instagram">◎</div><div><strong>Instagram</strong><span>@urbancafe</span></div><i class="connection-state connected"></i></div><div class="channel-meta"><div><span>Публикации</span><strong>12</strong></div><div><span>Reach</span><strong>48.2K</strong></div></div><button class="connect-button connected">Свързан</button></article>
-          <article class="channel-card" data-channel="Facebook"><div class="channel-card-head"><div class="platform-logo facebook">f</div><div><strong>Facebook</strong><span>Urban Café Varna</span></div><i class="connection-state connected"></i></div><div class="channel-meta"><div><span>Публикации</span><strong>8</strong></div><div><span>Reach</span><strong>35.7K</strong></div></div><button class="connect-button connected">Свързан</button></article>
-          <article class="channel-card" data-channel="LinkedIn"><div class="channel-card-head"><div class="platform-logo linkedin">in</div><div><strong>LinkedIn</strong><span>Urban Café</span></div><i class="connection-state connected"></i></div><div class="channel-meta"><div><span>Публикации</span><strong>4</strong></div><div><span>Reach</span><strong>18.1K</strong></div></div><button class="connect-button connected">Свързан</button></article>
-          <article class="channel-card" data-channel="X"><div class="channel-card-head"><div class="platform-logo x">X</div><div><strong>X</strong><span>@urbancafe_bg</span></div><i class="connection-state"></i></div><div class="channel-meta"><div><span>Публикации</span><strong>0</strong></div><div><span>Reach</span><strong>—</strong></div></div><button class="connect-button">Свържи</button></article>
-          <article class="channel-card" data-channel="Google Ads"><div class="channel-card-head"><div class="platform-logo google">G</div><div><strong>Google Ads</strong><span>Customer ID •••• 2831</span></div><i class="connection-state connected"></i></div><div class="channel-meta"><div><span>Кампании</span><strong>2</strong></div><div><span>Конверсии</span><strong>86</strong></div></div><button class="connect-button connected">Свързан</button></article>
-        </div>
+        <div class="panel-heading"><div><h2>Твоите канали</h2><p>Добави профилите, в които Bizomedia ще подготвя и публикува съдържание.</p></div><div class="channel-mode" data-channel-mode>Защитени връзки</div></div>
+        <div class="channel-summary" data-channel-summary aria-live="polite"></div>
+        <div class="channel-grid" data-channel-grid><div class="channel-loading">Зареждаме каналите…</div></div>
       </section>
 
       <section class="dashboard-panel" data-panel="ads">
@@ -164,10 +159,10 @@
       </section>
 
       <section class="dashboard-panel" data-panel="messages">
-        <div class="panel-heading"><div><h2>Съобщения</h2><p>Комуникация с екипа на Bizomedia.</p></div></div>
+        <div class="panel-heading"><div><h2>Bizomedia AI</h2><p>Твоят автоматичен асистент за съдържание, услуги и работа с платформата.</p></div><button class="outline-button message-refresh" type="button" data-message-refresh>Обнови</button></div>
         <div class="message-layout">
-          <article class="dashboard-card message-list"><div class="message-contact active"><div class="message-avatar">МК</div><div><strong>Мария К.</strong><span>Благодаря за обратната връзка 👋</span></div></div><div class="message-contact"><div class="message-avatar">СП</div><div><strong>Стефан П.</strong><span>Новият дизайн е готов.</span></div></div></article>
-          <article class="dashboard-card chat-card"><div class="card-header"><h3>Мария К. · Account Manager</h3><span class="status-pill approved">Онлайн</span></div><div class="chat-thread"><div class="bubble in">Здравей! Подготвили сме трите публикации за следващата седмица.</div><div class="bubble out">Супер, ще ги прегледам днес.</div><div class="bubble in">Благодаря! Можеш да ги одобриш от секция „Одобрения“ 👋</div></div><div class="chat-compose"><input placeholder="Напиши съобщение..."><button>➤</button></div></article>
+          <article class="dashboard-card message-list"><div class="message-contact active"><div class="message-avatar">AI</div><div><strong>Bizomedia AI</strong><span data-message-preview>Твоят асистент за съдържание и маркетинг.</span></div></div><div class="message-security"><span>✦</span><p><strong>AI асистент</strong>Отговаря автоматично и изпраща важните казуси за преглед от Bizomedia.</p></div></article>
+          <article class="dashboard-card chat-card"><div class="card-header"><div><h3>Bizomedia AI Assistant</h3><small class="message-presence">Отговаря автоматично на въпроси за твоето съдържание, план и услуги.</small></div><span class="status-pill approved">AI онлайн</span></div><div class="chat-thread" data-client-message-thread><div class="message-empty">Зареждаме разговора…</div></div><form class="chat-compose" data-client-message-form><input name="message" maxlength="2000" autocomplete="off" placeholder="Попитай Bizomedia AI..." aria-label="Ново съобщение" required><button type="submit" aria-label="Изпрати съобщението">➤</button></form><p class="message-form-status" data-client-message-status aria-live="polite"></p></article>
         </div>
       </section>
 
@@ -175,7 +170,37 @@
         <div class="panel-heading"><div><h2>Настройки</h2><p>Профил, бизнес и предпочитания.</p></div></div>
         <div class="settings-grid">
           <article class="dashboard-card settings-card"><div class="card-header"><h3>Профил</h3></div><label><span>ИМЕ</span><input data-settings-name autocomplete="name" placeholder="Име и фамилия"></label><label><span>ИМЕЙЛ</span><input data-settings-email type="email" disabled></label><label><span>ЕЗИК</span><select data-settings-language><option value="bg">Български</option><option value="en">English</option></select></label><button class="gradient-button" data-save-settings>Запази</button></article>
-          <article class="dashboard-card settings-card"><div class="card-header"><h3>Бизнес</h3></div><label><span>ИМЕ НА БИЗНЕСА</span><input data-settings-business placeholder="Име на бизнеса"></label><label><span>ОСНОВЕН КАНАЛ</span><select data-settings-channel><option>Instagram</option><option>Facebook</option><option>LinkedIn</option><option>X</option><option>Google Ads</option></select></label><button class="outline-button" data-save-settings>Запази промените</button></article>
+          <article class="dashboard-card settings-card">
+            <div class="card-header"><h3>Бизнес</h3></div>
+            <div class="settings-logo-row">
+              <div class="settings-logo-preview" data-settings-logo-preview><span data-settings-logo-placeholder>+</span></div>
+              <div><label class="settings-logo-upload"><input type="file" accept="image/png,image/jpeg,image/webp" data-settings-logo><span>Смени логото</span></label><button type="button" class="settings-logo-remove" data-settings-logo-remove>Премахни</button></div>
+            </div>
+            <label><span>ИМЕ НА БИЗНЕСА</span><input data-settings-business placeholder="Име на бизнеса"></label>
+            <label><span>ОСНОВЕН КАНАЛ</span><select data-settings-channel><option>Instagram</option><option>Facebook</option><option>LinkedIn</option><option>X</option><option>TikTok</option><option>Google Ads</option><option>Email</option></select></label>
+            <div class="settings-channel-picker" aria-label="Активни канали">
+              <label><input type="checkbox" value="Instagram" data-settings-social><span>Instagram</span></label>
+              <label><input type="checkbox" value="Facebook" data-settings-social><span>Facebook</span></label>
+              <label><input type="checkbox" value="LinkedIn" data-settings-social><span>LinkedIn</span></label>
+              <label><input type="checkbox" value="X" data-settings-social><span>X</span></label>
+              <label><input type="checkbox" value="TikTok" data-settings-social><span>TikTok</span></label>
+              <label><input type="checkbox" value="Google Ads" data-settings-social><span>Google Ads</span></label>
+              <label><input type="checkbox" value="Email" data-settings-social><span>Email Marketing</span></label>
+            </div>
+            <button class="outline-button" data-save-settings>Запази промените</button>
+          </article>
+          <article class="dashboard-card settings-card">
+            <div class="card-header"><h3>План</h3></div>
+            <p class="settings-plan-current">Активен план: <strong data-settings-active-plan>Essential</strong></p>
+            <label><span>ПРЕДПОЧИТАН ПЛАН</span><select data-settings-requested-plan><option value="essential">Essential</option><option value="growth">Growth</option><option value="business">Business</option></select></label>
+            <small class="settings-note">Промяната е заявка. Новият план се активира след потвърждение и плащане.</small>
+            <button class="outline-button" data-save-settings>Изпрати заявката</button>
+          </article>
+          <article class="dashboard-card settings-card">
+            <div class="card-header"><h3>Сигурност</h3></div>
+            <p class="settings-note">Можеш да смениш паролата чрез защитен линк, изпратен на твоя имейл.</p>
+            <a class="outline-button settings-security-link" href="forgot-password.html">Смени паролата</a>
+          </article>
         </div>
         <p class="settings-message" data-settings-message aria-live="polite"></p>
       </section>
@@ -187,15 +212,41 @@
     <div class="post-dialog-head"><div><span class="dialog-eyebrow">НОВА ЗАЯВКА</span><h2>Заяви публикация</h2></div><button type="button" class="dialog-close" data-close-post-form aria-label="Затвори">×</button></div>
     <label><span>ЗАГЛАВИЕ</span><input name="title" required maxlength="120" placeholder="Например: Лятна промоция"></label>
     <div class="post-form-row">
-      <label><span>КАНАЛ</span><select name="channel" required><option>Instagram</option><option>Facebook</option><option>LinkedIn</option><option>X</option><option>Google Ads</option><option>Email</option></select></label>
+      <label><span>КАНАЛ</span><select name="channel" required><option>Instagram</option><option>Facebook</option><option>LinkedIn</option><option>X</option><option>TikTok</option><option>Google Ads</option><option>Email</option></select></label>
       <label><span>ДАТА И ЧАС</span><input name="scheduledAt" type="datetime-local" required></label>
     </div>
+    <label class="media-upload"><span>СНИМКА</span><input name="media" type="file" accept="image/jpeg,image/png,image/webp" data-post-media><span class="media-upload-box"><span class="media-upload-icon">＋</span><strong>Избери изображение</strong><small>JPG, PNG или WebP · до 10 MB</small><img data-media-preview alt="Преглед на избраната снимка" hidden></span></label>
     <label><span>ИДЕЯ / НАСОКИ</span><textarea name="caption" rows="5" maxlength="1200" placeholder="Опиши какво искаш да кажем, офертата или основната идея."></textarea></label>
     <p class="post-form-message" data-post-form-message aria-live="polite"></p>
     <button class="gradient-button post-submit" type="submit">Изпрати заявката</button>
   </form>
 </dialog>
+<dialog class="post-dialog review-dialog" data-review-dialog>
+  <form class="post-request-form" data-review-form>
+    <div class="post-dialog-head"><div><span class="dialog-eyebrow">ПРЕГЛЕД И РЕШЕНИЕ</span><h2 data-review-title>Публикация</h2></div><button type="button" class="dialog-close" data-close-review aria-label="Затвори">×</button></div>
+    <div class="review-media" data-review-media hidden><img data-review-image alt="Изображение към публикацията"></div>
+    <div class="review-meta"><span data-review-channel></span><span data-review-date></span></div>
+    <div class="review-copy"><span>ТЕКСТ НА ПУБЛИКАЦИЯТА</span><p data-review-caption></p></div>
+    <label class="review-feedback"><span>КАКВО ДА ПРОМЕНИМ?</span><textarea name="feedback" rows="4" maxlength="1200" placeholder="Напиши конкретно какво искаш да бъде променено."></textarea></label>
+    <p class="post-form-message" data-review-message aria-live="polite"></p>
+    <div class="review-actions">
+      <button class="outline-button" type="button" data-review-correction>Искам корекция</button>
+      <button class="gradient-button" type="button" data-review-approve>Одобрявам</button>
+    </div>
+  </form>
+</dialog>
+<dialog class="post-dialog channel-dialog" data-channel-dialog>
+  <form class="post-request-form channel-connect-form" data-channel-form>
+    <div class="post-dialog-head"><div><span class="dialog-eyebrow">ДОБАВЯНЕ НА КАНАЛ</span><h2 data-channel-dialog-title>Свържи канал</h2><p data-channel-dialog-copy>Добави профила, който искаш да управляваме.</p></div><button type="button" class="dialog-close" data-close-channel aria-label="Затвори">×</button></div>
+    <div class="channel-dialog-platform"><span class="platform-logo" data-channel-dialog-icon>◎</span><div><strong data-channel-dialog-provider>Instagram</strong><small data-channel-dialog-state>Не е добавен</small></div></div>
+    <label><span>ИМЕ НА ПРОФИЛА ИЛИ БИЗНЕСА</span><input name="accountName" required maxlength="120" autocomplete="organization" placeholder="Например: Bizomedia Studio"></label>
+    <label><span data-channel-identifier-label>ПОТРЕБИТЕЛСКО ИМЕ</span><input name="accountIdentifier" required maxlength="180" autocomplete="off" placeholder="Например: @bizomedia"></label>
+    <div class="channel-security-note"><span>⌁</span><p><strong>Сигурно свързване</strong>Тук не въвеждаш парола. Достъпът до публикуване ще се потвърждава отделно през официалната платформа.</p></div>
+    <p class="post-form-message" data-channel-message aria-live="polite"></p>
+    <div class="channel-dialog-actions"><button class="channel-remove" type="button" data-remove-channel hidden>Премахни канала</button><button class="gradient-button" type="submit" data-save-channel>Добави канала</button></div>
+  </form>
+</dialog>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script><script src="auth.js?v=20260916-2"></script><script src="dashboard.js?v=20260916-3"></script><script src="dashboard-brand.js"></script>
+<script src="supabase-config.js"></script><script src="auth.js?v=20260918-1"></script><script src="dashboard.js?v=20260918-1"></script><script src="channels.js?v=20260918-1"></script><script src="messages.js?v=20260917-2"></script><script src="dashboard-brand.js"></script>
 </body>
 </html>
