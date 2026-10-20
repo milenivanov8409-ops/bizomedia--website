@@ -106,14 +106,13 @@ export default async (request: Request) => {
     const completion = await aiResponse.json();
     const generated = parseAssistant(completion?.choices?.[0]?.message?.content);
     const needsReview = generated.needsReview || requiresHumanReview(message);
-    const reviewReason = needsReview ? (generated.reviewReason || "Казус за преглед от Bizomedia") : null;
 
     const saveResponse = await fetch(`${supabaseUrl}/rest/v1/messages`, {
       method: "POST",
       headers: { Authorization: `Bearer ${serviceRoleKey}`, apikey: serviceRoleKey, "Content-Type": "application/json", Prefer: "return=representation" },
       body: JSON.stringify([
         { client_id: user.id, role: "client", sender_id: user.id, body: message },
-        { client_id: user.id, role: "assistant", sender_id: null, body: generated.reply, needs_review: needsReview, review_reason: reviewReason }
+        { client_id: user.id, role: "assistant", sender_id: null, body: generated.reply, needs_review: needsReview }
       ])
     });
     if (!saveResponse.ok) {
