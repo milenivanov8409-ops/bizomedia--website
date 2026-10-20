@@ -11,14 +11,12 @@ create table if not exists public.messages (
   body text not null,
   client_read_at timestamptz,
   needs_review boolean not null default false,
-  review_reason text,
   reviewed_at timestamptz,
   created_at timestamptz not null default now(),
   constraint messages_role_check check (role in ('client', 'assistant')),
   constraint messages_body_check check (body = btrim(body) and char_length(body) between 1 and 2000),
-  constraint messages_review_reason_check check (review_reason is null or char_length(review_reason) <= 300),
   constraint messages_actor_check check (
-    (role = 'client' and sender_id = client_id and needs_review = false and review_reason is null)
+    (role = 'client' and sender_id = client_id and needs_review = false)
     or (role = 'assistant' and sender_id is null)
   )
 );
@@ -35,6 +33,7 @@ alter table public.messages enable row level security;
 revoke all on public.messages from anon, authenticated;
 grant select on public.messages to authenticated;
 grant update (client_read_at, reviewed_at) on public.messages to authenticated;
+grant select, insert, update, delete on public.messages to service_role;
 
 drop policy if exists "Clients can read own AI conversation" on public.messages;
 create policy "Clients can read own AI conversation"
@@ -86,7 +85,6 @@ begin
     or new.sender_id is distinct from old.sender_id
     or new.body is distinct from old.body
     or new.needs_review is distinct from old.needs_review
-    or new.review_reason is distinct from old.review_reason
     or new.created_at is distinct from old.created_at then
     raise exception 'Conversation content is immutable';
   end if;

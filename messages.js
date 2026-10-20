@@ -284,7 +284,7 @@
         if (!new Set(["admin", "editor"]).has(role)) return;
         const [profileResult, messageResult] = await Promise.all([
           auth.client.from("profiles").select("id,full_name,business_name").order("business_name", { ascending: true }),
-          auth.client.from("messages").select("id,client_id,role,sender_id,body,needs_review,review_reason,reviewed_at,created_at").order("created_at", { ascending: true })
+          auth.client.from("messages").select("id,client_id,role,sender_id,body,needs_review,reviewed_at,created_at").order("created_at", { ascending: true })
         ]);
         if (profileResult.error || messageResult.error) {
           clientsList.replaceChildren();

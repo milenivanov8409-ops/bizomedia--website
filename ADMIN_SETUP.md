@@ -9,10 +9,11 @@ The internal panel is available at `admin.html`. It never contains a Supabase se
 3. Apply `supabase-admin-access.sql`.
 4. Apply `supabase-messages.sql`.
 5. Apply `supabase-channels.sql`.
-6. Add `SUPABASE_SERVICE_ROLE_KEY` to Netlify environment variables only.
-7. Give the owner account an administrator role from the Supabase SQL Editor.
-8. Sign out and sign in again so the refreshed access token contains the role.
-9. Publish the matching frontend files.
+6. Apply `supabase-advisor-hardening.sql`.
+7. Add `SUPABASE_SERVICE_ROLE_KEY` to Netlify environment variables only.
+8. Give the owner account an administrator role from the Supabase SQL Editor.
+9. Sign out and sign in again so the refreshed access token contains the role.
+10. Publish the matching frontend files.
 
 ## Give the owner account access
 
