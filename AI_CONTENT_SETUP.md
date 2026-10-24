@@ -15,6 +15,7 @@ The local text generator, visual preview, monthly planner and AI assistant use n
 Live text generation runs in `netlify/functions/generate-content.ts` at `POST /api/generate-content`. Live visual generation runs in `netlify/functions/generate-visual.ts` at `POST /api/generate-visual`. Monthly planning runs in `netlify/functions/generate-plan.ts` at `POST /api/generate-plan`. Client assistant replies run in `netlify/functions/assistant-chat.ts` at `POST /api/assistant-chat` after a Netlify deploy.
 
 - Netlify AI Gateway supplies the AI provider credentials inside the serverless function.
+- The Functions use the official OpenAI server SDK with the pinned version from `package.json` and `pnpm-lock.yaml`.
 - The selected model is `gpt-4.1-mini` to keep text-generation cost low.
 - The visual endpoint defaults to `gpt-image-2.5-flare`, low quality, 1024 × 1024 WebP. Override it with `BIZOMEDIA_IMAGE_MODEL` if needed.
 - Each click creates one model request, capped at 900 output tokens.
@@ -38,7 +39,8 @@ The public Supabase URL and publishable key have safe project fallbacks. They ca
 3. Sign out and sign in again so the access token contains the new role.
 4. Confirm Netlify AI features are enabled for the team.
 5. Deploy the site once so AI Gateway is active.
-6. Run the checks below before relying on live generation.
+6. Confirm the Netlify build installs the pinned dependencies and deploys all four Functions successfully.
+7. Run the checks below before relying on live generation.
 
 ## QA checklist
 

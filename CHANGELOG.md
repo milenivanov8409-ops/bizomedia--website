@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-23 — Netlify AI Gateway reliability
+
+- Replaced hand-built AI Gateway HTTP requests with the official OpenAI server SDK across the assistant, content generator, monthly planner and visual generator.
+- Pinned the OpenAI dependency and Node.js 22 runtime for repeatable Netlify builds.
+- Added safe server-side error metadata for assistant failures without exposing keys or provider responses to clients.
+
 ## 2026-09-18
 
 - Rebuilt the client Channels area with seven supported marketing channels.
