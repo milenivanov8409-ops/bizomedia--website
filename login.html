@@ -32,6 +32,7 @@
     </section>
   <section class="auth-form-panel">
     <div class="auth-box">
+      <div class="auth-language" role="group" aria-label="Language / Език"><button type="button" data-auth-language="bg" aria-pressed="true">BG</button><button type="button" data-auth-language="en" aria-pressed="false">EN</button></div>
       <a class="back-site" href="index.html">← Обратно към сайта</a>
       <h2>Добре дошъл</h2>
       <p class="auth-subtitle">Влез в своето My Bizomedia Studio.</p>
@@ -42,14 +43,15 @@
         <div class="auth-helper-row"><label class="checkbox-label"><input type="checkbox" name="remember" checked> Запомни ме</label><a class="auth-link" href="forgot-password.html">Забравена парола?</a></div>
         <button class="gradient-button auth-submit full" type="submit">Вход</button>
       </form>
-      <div class="auth-message"></div>
+      <div class="auth-message" role="status" aria-live="polite" aria-atomic="true"></div>
       <button class="resend-confirmation" type="button" data-resend-confirmation hidden>Изпрати отново имейла за потвърждение</button>
       <div class="auth-separator">или разгледай платформата</div>
-      <button class="demo-login" type="button">Отвори демо dashboard</button>
+      <p class="demo-explanation" id="demo-explanation">Демо режимът показва примерни данни. За своя бизнес използвай вход или регистрация.</p>
+      <button class="demo-login" type="button" aria-describedby="demo-explanation">Разгледай демо с примерни данни</button>
       <p class="auth-bottom">Нямаш профил? <a href="register.html">Регистрация</a></p>
     </div>
   </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script><script src="auth.js?v=20260918-1"></script>
+<script src="supabase-config.js"></script><script src="auth-language.js?v=20261024"></script><script src="auth.js?v=20261024"></script>
 </body></html>

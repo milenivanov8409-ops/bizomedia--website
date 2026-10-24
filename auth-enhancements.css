@@ -65,3 +65,35 @@
   text-underline-offset: 3px;
   cursor: pointer;
 }
+
+.auth-language {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+.auth-language button {
+  padding: 7px 10px;
+  border: 1px solid #33434b;
+  border-radius: 7px;
+  background: transparent;
+  color: #9eabb5;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.auth-language button[aria-pressed="true"] {
+  color: #4bd8d0;
+  border-color: #4bd8d0;
+  background: #122b2d;
+}
+.auth-language button:focus-visible {
+  outline: 2px solid #4bd8d0;
+  outline-offset: 3px;
+}
+.demo-explanation {
+  color: #9eabb5;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}

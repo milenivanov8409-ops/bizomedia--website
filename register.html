@@ -32,6 +32,7 @@
     </section>
   <section class="auth-form-panel">
     <div class="auth-box">
+      <div class="auth-language" role="group" aria-label="Language / Език"><button type="button" data-auth-language="bg" aria-pressed="true">BG</button><button type="button" data-auth-language="en" aria-pressed="false">EN</button></div>
       <a class="back-site" href="index.html">← Обратно към сайта</a>
       <h2>Създай профил</h2>
       <p class="auth-subtitle">Създай профил, а след потвърждението ще настроиш каналите, пакета и своето лого.</p>
@@ -50,12 +51,12 @@
         <label class="checkbox-label legal-consent"><input type="checkbox" name="legalConsent" required> <span>Съгласявам се с <a href="terms.html" target="_blank" rel="noopener">Общите условия</a> и <a href="privacy.html" target="_blank" rel="noopener">Политиката за поверителност</a>.</span></label>
         <button class="gradient-button auth-submit full" type="submit">Създай профил</button>
       </form>
-      <div class="auth-message"></div>
+      <div class="auth-message" role="status" aria-live="polite" aria-atomic="true"></div>
       <button class="resend-confirmation" type="button" data-resend-confirmation hidden>Изпрати отново имейла за потвърждение</button>
       <p class="auth-bottom">Вече имаш профил? <a href="login.html">Вход</a></p>
     </div>
   </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script><script src="auth.js?v=20260918-1"></script>
+<script src="supabase-config.js"></script><script src="auth-language.js?v=20261024"></script><script src="auth.js?v=20261024"></script>
 </body></html>

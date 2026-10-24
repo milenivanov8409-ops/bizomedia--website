@@ -1,4 +1,5 @@
 (() => {
+  const t = window.BizomediaAuthText || ((text) => text);
   const config = window.BIZOMEDIA_SUPABASE || {};
   const TERMS_VERSION = "2026-09-16";
   const SESSION_ONLY_KEY = "bizomedia-auth-session-only";
@@ -47,7 +48,7 @@
 
   function showMessage(text, type = "") {
     if (!messageBox) return;
-    messageBox.textContent = text;
+    messageBox.textContent = t(text);
     messageBox.className = `auth-message ${type}`.trim();
   }
 
@@ -56,7 +57,7 @@
     if (!submit) return;
     submit.disabled = isBusy;
     submit.dataset.originalText ||= submit.textContent;
-    submit.textContent = isBusy ? "Моля, изчакай…" : submit.dataset.originalText;
+    submit.textContent = isBusy ? t("Моля, изчакай…") : submit.dataset.originalText;
   }
 
   function setResendVisible(isVisible) {
@@ -65,6 +66,8 @@
 
   function translateAuthError(error) {
     const message = String(error?.message || "");
+    const localErrors = ["Паролата трябва да съдържа поне 10 символа.", "Паролата трябва да съдържа главна и малка буква и цифра.", "Профилът временно не е достъпен.", "Сесията е изтекла. Влез отново.", "Паролите не съвпадат.", "Потвърди Общите условия и Политиката за поверителност.", "Паролите не съвпадат."];
+    if (localErrors.includes(message)) return message;
     const normalized = message.toLowerCase();
     if (normalized.includes("invalid login credentials")) return "Невалиден имейл или парола.";
     if (normalized.includes("email not confirmed")) return "Потвърди имейла си, преди да влезеш.";
@@ -73,7 +76,7 @@
     if (normalized.includes("password") && normalized.includes("weak")) return "Избери по-сигурна парола.";
     if (normalized.includes("same password")) return "Новата парола трябва да е различна от старата.";
     if (normalized.includes("expired") || normalized.includes("otp")) return "Линкът е изтекъл или вече е използван. Поискай нов.";
-    return message || "Възникна грешка. Провери данните и опитай отново.";
+    return "Възникна грешка. Провери данните и опитай отново.";
   }
 
   function validatePassword(password) {
@@ -232,7 +235,7 @@
       const input = button.parentElement.querySelector("input");
       if (!input) return;
       input.type = input.type === "password" ? "text" : "password";
-      button.setAttribute("aria-label", input.type === "password" ? "Покажи паролата" : "Скрий паролата");
+      button.setAttribute("aria-label", t(input.type === "password" ? "Покажи паролата" : "Скрий паролата"));
     });
   });
 
@@ -247,7 +250,7 @@
 
   if (!configured) {
     banner?.classList.add("show");
-    if (banner) banner.textContent = "Входът временно не е достъпен. Моля, опитай отново по-късно.";
+    if (banner) banner.textContent = t("Входът временно не е достъпен. Моля, опитай отново по-късно.");
   }
 
   if (new URLSearchParams(location.search).get("confirmed") === "1") {
@@ -259,7 +262,7 @@
     if (!client || !pendingConfirmationEmail) return;
     resendButton.disabled = true;
     const originalText = resendButton.textContent;
-    resendButton.textContent = "Изпращане…";
+    resendButton.textContent = t("Изпращане…");
     try {
       const emailRedirectTo = new URL("login.html?confirmed=1", location.href).href;
       const { error } = await client.auth.resend({
@@ -384,7 +387,7 @@
         }
       } catch (error) {
         const translated = translateAuthError(error);
-        showMessage(translated, "error");
+        showMessage(t(translated), "error");
         if (String(error?.message || "").toLowerCase().includes("email not confirmed")) {
           sessionStorage.setItem(PENDING_EMAIL_KEY, pendingConfirmationEmail);
           setResendVisible(true);
@@ -501,6 +504,29 @@
     }
   }
 
+  async function redirectSignedInVisitor() {
+    if (!client || !["login", "register"].includes(authForm?.dataset.authForm)) return;
+    const hash = new URLSearchParams(location.hash.replace(/^#/, ""));
+    const search = new URLSearchParams(location.search);
+    if (hash.get("type") === "recovery" || search.get("type") === "recovery") {
+      location.replace(`reset-password.html${location.search}${location.hash}`);
+      return;
+    }
+    setBusy(true);
+    try {
+      const { data, error } = await client.auth.getSession();
+      if (error || !data.session?.user) return;
+      const profile = await loadProfile(data.session.user);
+      localStorage.removeItem("bizomedia-demo");
+      location.replace(profile.onboarding_completed ? "dashboard.html" : "onboarding.html");
+    } catch {
+      showMessage("Възникна грешка. Провери данните и опитай отново.", "error");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  redirectSignedInVisitor();
   protectDashboard();
   preparePasswordRecovery();
   window.BizomediaAuth = { client, configured, loadProfile, updateProfile };
