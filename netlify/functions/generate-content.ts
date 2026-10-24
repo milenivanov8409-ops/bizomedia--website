@@ -1,3 +1,5 @@
+import OpenAI from "openai";
+
 const ALLOWED_CHANNELS = new Set(["Instagram", "Facebook", "LinkedIn", "X", "Google Ads", "Email"]);
 const ALLOWED_GOALS = new Set(["engagement", "sales", "awareness", "education"]);
 const ALLOWED_TONES = new Set(["professional", "friendly", "confident", "premium", "playful"]);
@@ -18,11 +20,6 @@ function json(body: unknown, status = 200) {
 
 function text(value: unknown, maxLength: number) {
   return String(value || "").trim().slice(0, maxLength);
-}
-
-function openAiUrl(baseUrl: string) {
-  const base = baseUrl.replace(/\/+$/, "");
-  return base.endsWith("/v1") ? `${base}/chat/completions` : `${base}/v1/chat/completions`;
 }
 
 async function getStaffUser(token: string) {
@@ -87,9 +84,7 @@ export default async (request: Request) => {
     return json({ error: "Липсва достатъчно информация за публикацията." }, 400);
   }
 
-  const baseUrl = Netlify.env.get("OPENAI_BASE_URL");
-  const apiKey = Netlify.env.get("OPENAI_API_KEY");
-  if (!baseUrl || !apiKey) {
+  if (!process.env.OPENAI_BASE_URL || !process.env.OPENAI_API_KEY) {
     return json({ error: "AI услугата още не е активирана в Netlify." }, 503);
   }
 
@@ -117,28 +112,17 @@ export default async (request: Request) => {
   ].join("\n");
 
   try {
-    const aiResponse = await fetch(openAiUrl(baseUrl), {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        model: "gpt-4.1-mini",
-        temperature: 0.7,
-        max_tokens: 900,
-        response_format: { type: "json_object" },
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt }
-        ]
-      })
+    const openai = new OpenAI();
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4.1-mini",
+      temperature: 0.7,
+      max_tokens: 900,
+      response_format: { type: "json_object" },
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt }
+      ]
     });
-    if (!aiResponse.ok) {
-      console.error("Bizomedia AI gateway error", aiResponse.status);
-      return json({ error: "AI услугата временно не отговаря. Опитай отново след малко." }, 502);
-    }
-    const completion = await aiResponse.json();
     const generated = parseGeneratedContent(completion?.choices?.[0]?.message?.content);
     return json({ ...generated, model: "gpt-4.1-mini" });
   } catch (error) {

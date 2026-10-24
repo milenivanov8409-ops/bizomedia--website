@@ -1,3 +1,5 @@
+import OpenAI from "openai";
+
 const STAFF_ROLES = new Set(["admin", "editor"]);
 const ALLOWED_CHANNELS = new Set(["Instagram", "Facebook", "LinkedIn", "X", "Google Ads", "Email"]);
 const ALLOWED_GOALS = new Set(["balanced", "engagement", "sales", "awareness", "education"]);
@@ -11,11 +13,6 @@ function json(body: unknown, status = 200) {
 
 function text(value: unknown, maxLength: number) {
   return String(value || "").trim().slice(0, maxLength);
-}
-
-function openAiUrl(baseUrl: string) {
-  const base = baseUrl.replace(/\/+$/, "");
-  return base.endsWith("/v1") ? `${base}/chat/completions` : `${base}/v1/chat/completions`;
 }
 
 async function getStaffUser(token: string) {
@@ -74,9 +71,7 @@ export default async (request: Request) => {
     return json({ error: "Избери валиден клиент, месец, брой и цел." }, 400);
   }
 
-  const baseUrl = Netlify.env.get("OPENAI_BASE_URL");
-  const apiKey = Netlify.env.get("OPENAI_API_KEY");
-  if (!baseUrl || !apiKey) return json({ error: "AI услугата още не е активирана в Netlify." }, 503);
+  if (!process.env.OPENAI_BASE_URL || !process.env.OPENAI_API_KEY) return json({ error: "AI услугата още не е активирана в Netlify." }, 503);
   const languageName = language === "en" ? "English" : "Bulgarian";
   const systemPrompt = [
     "You are Bizomedia's senior social media strategist.",
@@ -91,13 +86,14 @@ export default async (request: Request) => {
   const userPrompt = ["<CLIENT_DATA>", `Business: ${businessName}`, `Month: ${month}`, `Allowed channels: ${channels.join(", ")}`, `Goal: ${goal}`, `Additional direction: ${brief || "Not provided"}`, "</CLIENT_DATA>"].join("\n");
 
   try {
-    const aiResponse = await fetch(openAiUrl(baseUrl), {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "gpt-4.1-mini", temperature: 0.75, max_tokens: 3200, response_format: { type: "json_object" }, messages: [{ role: "system", content: systemPrompt }, { role: "user", content: userPrompt }] })
+    const openai = new OpenAI();
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4.1-mini",
+      temperature: 0.75,
+      max_tokens: 3200,
+      response_format: { type: "json_object" },
+      messages: [{ role: "system", content: systemPrompt }, { role: "user", content: userPrompt }]
     });
-    if (!aiResponse.ok) return json({ error: "AI планерът временно не отговаря. Опитай отново след малко." }, 502);
-    const completion = await aiResponse.json();
     const items = parsePlan(completion?.choices?.[0]?.message?.content, count, channels, month);
     return json({ items, model: "gpt-4.1-mini" });
   } catch (error) {

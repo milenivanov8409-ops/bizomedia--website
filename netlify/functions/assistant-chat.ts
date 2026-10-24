@@ -1,3 +1,6 @@
+import OpenAI from "openai";
+import type { ChatCompletionMessageParam } from "openai/resources/chat/completions";
+
 const PROJECT_URL = "https://bvhbjkeltgltqwovjidl.supabase.co";
 const PROJECT_PUBLISHABLE_KEY = "sb_publishable_g5FdF-XFw8DRhCUuVqf30Q_Lbh22-1W";
 
@@ -7,11 +10,6 @@ function json(body: unknown, status = 200) {
 
 function text(value: unknown, maxLength: number) {
   return String(value || "").trim().slice(0, maxLength);
-}
-
-function openAiUrl(baseUrl: string) {
-  const base = baseUrl.replace(/\/+$/, "");
-  return base.endsWith("/v1") ? `${base}/chat/completions` : `${base}/v1/chat/completions`;
 }
 
 async function getUser(token: string, supabaseUrl: string, publishableKey: string) {
@@ -39,6 +37,17 @@ function requiresHumanReview(message: string) {
   return /(refund|invoice|payment|charge|contract|legal|privacy|security|human|person|complaint|възстанов|фактур|плащ|такс|договор|прав|поверител|сигурност|човек|оплак)/i.test(message);
 }
 
+function aiErrorDetails(error: unknown) {
+  const value = error as Record<string, unknown> | null;
+  return {
+    name: value?.name || "UnknownError",
+    status: value?.status || null,
+    code: value?.code || null,
+    type: value?.type || null,
+    requestId: value?.request_id || value?._request_id || null
+  };
+}
+
 export default async (request: Request) => {
   if (request.method !== "POST") return json({ error: "Method not allowed" }, 405);
   if (Number(request.headers.get("Content-Length") || 0) > 8_000) return json({ error: "Съобщението е твърде голямо." }, 413);
@@ -50,10 +59,8 @@ export default async (request: Request) => {
   const supabaseUrl = Netlify.env.get("SUPABASE_URL") || PROJECT_URL;
   const publishableKey = Netlify.env.get("SUPABASE_PUBLISHABLE_KEY") || PROJECT_PUBLISHABLE_KEY;
   const serviceRoleKey = Netlify.env.get("SUPABASE_SERVICE_ROLE_KEY");
-  const baseUrl = Netlify.env.get("OPENAI_BASE_URL");
-  const apiKey = Netlify.env.get("OPENAI_API_KEY");
   if (!serviceRoleKey) return json({ error: "Историята на AI асистента още не е свързана." }, 503);
-  if (!baseUrl || !apiKey) return json({ error: "AI услугата още не е активирана в Netlify." }, 503);
+  if (!process.env.OPENAI_BASE_URL || !process.env.OPENAI_API_KEY) return json({ error: "AI услугата още не е активирана в Netlify." }, 503);
 
   const user = await getUser(token, supabaseUrl, publishableKey);
   if (!user?.id) return json({ error: "Сесията е изтекла. Влез отново." }, 401);
@@ -69,7 +76,9 @@ export default async (request: Request) => {
     readUserData(`posts?user_id=eq.${encodeURIComponent(user.id)}&select=title,channel,status,scheduled_at&order=created_at.desc&limit=12`, token, supabaseUrl, publishableKey)
   ]);
   const profile = profiles[0] || {};
-  const history = [...historyDescending].reverse().map((item: Record<string, unknown>) => ({ role: item.role === "assistant" ? "assistant" : "user", content: text(item.body, 2000) }));
+  const history: ChatCompletionMessageParam[] = [...historyDescending].reverse().map((item: Record<string, unknown>) => item.role === "assistant"
+    ? { role: "assistant", content: text(item.body, 2000) }
+    : { role: "user", content: text(item.body, 2000) });
   const language = profile.preferred_language === "en" ? "English" : "Bulgarian";
   const systemPrompt = [
     "You are Bizomedia AI, the helpful client assistant inside My Bizomedia Studio.",
@@ -97,13 +106,15 @@ export default async (request: Request) => {
   ].join("\n");
 
   try {
-    const aiResponse = await fetch(openAiUrl(baseUrl), {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "gpt-4.1-mini", temperature: 0.35, max_tokens: 500, response_format: { type: "json_object" }, messages: [{ role: "system", content: systemPrompt }, ...history, { role: "user", content: context }] })
+    const openai = new OpenAI();
+    const messages: ChatCompletionMessageParam[] = [{ role: "system", content: systemPrompt }, ...history, { role: "user", content: context }];
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4.1-mini",
+      temperature: 0.35,
+      max_tokens: 500,
+      response_format: { type: "json_object" },
+      messages
     });
-    if (!aiResponse.ok) return json({ error: "Bizomedia AI временно не отговаря. Опитай отново след малко." }, 502);
-    const completion = await aiResponse.json();
     const generated = parseAssistant(completion?.choices?.[0]?.message?.content);
     const needsReview = generated.needsReview || requiresHumanReview(message);
 
@@ -122,7 +133,7 @@ export default async (request: Request) => {
     const saved = await saveResponse.json();
     return json({ clientMessage: saved.find((item: Record<string, unknown>) => item.role === "client"), assistantMessage: saved.find((item: Record<string, unknown>) => item.role === "assistant"), model: "gpt-4.1-mini" });
   } catch (error) {
-    console.error("Bizomedia AI assistant failed", error);
+    console.error("Bizomedia AI assistant failed", aiErrorDetails(error));
     return json({ error: "Bizomedia AI не можа да подготви отговор. Опитай отново." }, 502);
   }
 };

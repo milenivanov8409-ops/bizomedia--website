@@ -1,3 +1,5 @@
+import OpenAI from "openai";
+
 const STAFF_ROLES = new Set(["admin", "editor"]);
 const ALLOWED_CHANNELS = new Set(["Instagram", "Facebook", "LinkedIn", "X", "Google Ads", "Email"]);
 const PROJECT_URL = "https://bvhbjkeltgltqwovjidl.supabase.co";
@@ -17,11 +19,6 @@ function json(body: unknown, status = 200) {
 
 function text(value: unknown, maxLength: number) {
   return String(value || "").trim().slice(0, maxLength);
-}
-
-function openAiImageUrl(baseUrl: string) {
-  const base = baseUrl.replace(/\/+$/, "");
-  return base.endsWith("/v1") ? `${base}/images/generations` : `${base}/v1/images/generations`;
 }
 
 async function getStaffUser(token: string) {
@@ -61,9 +58,7 @@ export default async (request: Request) => {
     return json({ error: "Липсва достатъчно информация за визията." }, 400);
   }
 
-  const baseUrl = Netlify.env.get("OPENAI_BASE_URL");
-  const apiKey = Netlify.env.get("OPENAI_API_KEY");
-  if (!baseUrl || !apiKey) return json({ error: "AI услугата още не е активирана в Netlify." }, 503);
+  if (!process.env.OPENAI_BASE_URL || !process.env.OPENAI_API_KEY) return json({ error: "AI услугата още не е активирана в Netlify." }, 503);
 
   const model = Netlify.env.get("BIZOMEDIA_IMAGE_MODEL") || "gpt-image-2.5-flare";
   const prompt = [
@@ -82,24 +77,16 @@ export default async (request: Request) => {
   ].join("\n");
 
   try {
-    const aiResponse = await fetch(openAiImageUrl(baseUrl), {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model,
-        prompt,
-        size: "1024x1024",
-        quality: "low",
-        output_format: "webp",
-        output_compression: 82,
-        background: "opaque"
-      })
+    const openai = new OpenAI();
+    const result = await openai.images.generate({
+      model,
+      prompt,
+      size: "1024x1024",
+      quality: "low",
+      output_format: "webp",
+      output_compression: 82,
+      background: "opaque"
     });
-    if (!aiResponse.ok) {
-      console.error("Bizomedia image gateway error", aiResponse.status);
-      return json({ error: "AI визията временно не може да бъде създадена. Опитай отново след малко." }, 502);
-    }
-    const result = await aiResponse.json();
     const imageBase64 = String(result?.data?.[0]?.b64_json || "");
     if (!imageBase64 || imageBase64.length > MAX_IMAGE_BASE64_LENGTH) {
       return json({ error: "Полученото изображение е твърде голямо или невалидно." }, 502);
