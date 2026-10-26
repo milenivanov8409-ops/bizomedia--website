@@ -122,7 +122,7 @@ export default async (request: Request) => {
       method: "POST",
       headers: { Authorization: `Bearer ${serviceRoleKey}`, apikey: serviceRoleKey, "Content-Type": "application/json", Prefer: "return=representation" },
       body: JSON.stringify([
-        { client_id: user.id, role: "client", sender_id: user.id, body: message },
+        { client_id: user.id, role: "client", sender_id: user.id, body: message, needs_review: false },
         { client_id: user.id, role: "assistant", sender_id: null, body: generated.reply, needs_review: needsReview }
       ])
     });
